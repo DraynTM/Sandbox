@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Неизвестен - Fnaf Lofi.mp3-b94318e01fb6e9ad609b5c025c99092f.mp3str"
+
+[deps]
+
+source_file="res://audio/Music/Неизвестен - Fnaf Lofi.mp3"
+dest_files=[ "res://.import/Неизвестен - Fnaf Lofi.mp3-b94318e01fb6e9ad609b5c025c99092f.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

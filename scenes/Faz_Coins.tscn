@@ -1,0 +1,46 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Fonts/NicholsonGothicRegular.otf" type="DynamicFontData" id=1]
+[ext_resource path="res://Sprites/20220212_214342.4LYEZ.png" type="Texture" id=2]
+[ext_resource path="res://scripts/Faz_Coins.gd" type="Script" id=3]
+[ext_resource path="res://scenes/Gold_Coins.tscn" type="PackedScene" id=4]
+
+[sub_resource type="DynamicFont" id=1]
+size = 26
+use_filter = true
+font_data = ExtResource( 1 )
+
+[node name="Faz_Coins" type="Node2D"]
+script = ExtResource( 3 )
+
+[node name="Faz_Counter" type="Label" parent="."]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 7.0
+margin_top = -11.0
+margin_right = 661.0
+margin_bottom = 181.0
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 1 )
+text = "0"
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Faz_Icon" type="TextureRect" parent="."]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = -64.0
+margin_top = -37.0
+margin_right = 64.0
+margin_bottom = 91.0
+rect_scale = Vector2( 0.571913, 0.556369 )
+texture = ExtResource( 2 )
+stretch_mode = 6
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Gold_Coins" parent="." instance=ExtResource( 4 )]
+position = Vector2( 140, 1 )

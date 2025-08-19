@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/FNAF Security Breach - Ambience.mp3-b36ddb97a9e376a0de7e5a64beb89c2e.mp3str"
+
+[deps]
+
+source_file="res://audio/Music/FNAF Security Breach - Ambience.mp3"
+dest_files=[ "res://.import/FNAF Security Breach - Ambience.mp3-b36ddb97a9e376a0de7e5a64beb89c2e.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

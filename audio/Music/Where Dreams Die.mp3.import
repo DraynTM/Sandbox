@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Where Dreams Die.mp3-48a0791247e916c3d92c3e88ff620261.mp3str"
+
+[deps]
+
+source_file="res://audio/Music/Where Dreams Die.mp3"
+dest_files=[ "res://.import/Where Dreams Die.mp3-48a0791247e916c3d92c3e88ff620261.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

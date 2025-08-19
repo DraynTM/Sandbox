@@ -1,0 +1,294 @@
+[gd_scene load_steps=39 format=2]
+
+[ext_resource path="res://scripts/Guard_Chasing.gd" type="Script" id=2]
+[ext_resource path="res://Fonts/bebas.tres" type="DynamicFont" id=3]
+[ext_resource path="res://Sprites/Spritesheets/william with axe.png" type="Texture" id=4]
+
+[sub_resource type="Shader" id=30]
+code = "shader_type canvas_item;
+
+uniform sampler2D noise;
+uniform vec4 line_color_a: hint_color = vec4(1.0, 1.0, 1.0, 1.0);
+uniform vec4 line_color_b: hint_color = vec4(0.0, 1.0, 1.0, 1.0);
+uniform float line_threshold = 0.6;
+uniform float inverse_speed = 10.0;
+uniform float line_length = 1000.0;
+uniform float angle: hint_range(0.0, 360.0) = 0.0;
+
+
+void fragment() {
+	vec2 uv = vec2(UV.x * cos(radians(angle)) - UV.y * sin(radians(angle)), UV.x * sin(radians(angle)) + UV.y * cos(radians(angle)));
+	vec4 noise_line = texture(noise, vec2(uv.x / line_length + TIME / inverse_speed, uv.y));
+	vec4 color;
+	if (noise_line.r < line_threshold){
+		color = vec4(0.);
+	} else {
+		color = mix(line_color_a, line_color_b, 1.0 - noise_line.r);
+	}
+	COLOR = color;
+}"
+
+[sub_resource type="OpenSimplexNoise" id=31]
+
+[sub_resource type="NoiseTexture" id=32]
+width = 536
+height = 1377
+noise = SubResource( 31 )
+
+[sub_resource type="ShaderMaterial" id=33]
+shader = SubResource( 30 )
+shader_param/line_color_a = Color( 1, 1, 1, 1 )
+shader_param/line_color_b = Color( 0, 1, 1, 1 )
+shader_param/line_threshold = 0.6
+shader_param/inverse_speed = 1.0
+shader_param/line_length = 1000.0
+shader_param/angle = 0.0
+shader_param/noise = SubResource( 32 )
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 4 )
+region = Rect2( 0, 1, 26, 41 )
+
+[sub_resource type="Animation" id=2]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ SubResource( 1 ) ]
+}
+
+[sub_resource type="AtlasTexture" id=34]
+atlas = ExtResource( 4 )
+region = Rect2( 27, 1, 24, 41 )
+
+[sub_resource type="AtlasTexture" id=35]
+atlas = ExtResource( 4 )
+region = Rect2( 53, 1, 27, 41 )
+
+[sub_resource type="Animation" id=3]
+resource_name = "idle down"
+length = 0.847
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ SubResource( 1 ), SubResource( 34 ), SubResource( 1 ), SubResource( 35 ) ]
+}
+
+[sub_resource type="AtlasTexture" id=36]
+atlas = ExtResource( 4 )
+region = Rect2( 10, 44, 27, 41 )
+
+[sub_resource type="AtlasTexture" id=37]
+atlas = ExtResource( 4 )
+region = Rect2( 39, 44, 25, 41 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 4 )
+region = Rect2( 10, 44, 27, 41 )
+
+[sub_resource type="AtlasTexture" id=38]
+atlas = ExtResource( 4 )
+region = Rect2( 66, 44, 26, 41 )
+
+[sub_resource type="Animation" id=5]
+resource_name = "idle up"
+length = 0.836
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ SubResource( 36 ), SubResource( 37 ), SubResource( 4 ), SubResource( 38 ) ]
+}
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 4 )
+region = Rect2( 4, 129, 21, 41 )
+
+[sub_resource type="AtlasTexture" id=28]
+atlas = ExtResource( 4 )
+region = Rect2( 31, 129, 21, 40 )
+
+[sub_resource type="Animation" id=7]
+resource_name = "left"
+length = 0.415
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ SubResource( 6 ), SubResource( 28 ) ]
+}
+
+[sub_resource type="AtlasTexture" id=8]
+atlas = ExtResource( 4 )
+region = Rect2( 10, 86, 19, 41 )
+
+[sub_resource type="AtlasTexture" id=29]
+atlas = ExtResource( 4 )
+region = Rect2( 32, 87, 19, 40 )
+
+[sub_resource type="Animation" id=9]
+resource_name = "right"
+length = 0.415
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ SubResource( 8 ), SubResource( 29 ) ]
+}
+
+[sub_resource type="AnimationNodeAnimation" id=11]
+animation = "idle up"
+
+[sub_resource type="AnimationNodeAnimation" id=12]
+animation = "idle down"
+
+[sub_resource type="AnimationNodeAnimation" id=13]
+animation = "left"
+
+[sub_resource type="AnimationNodeAnimation" id=14]
+animation = "right"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id=15]
+blend_point_0/node = SubResource( 11 )
+blend_point_0/pos = Vector2( 0, -1 )
+blend_point_1/node = SubResource( 12 )
+blend_point_1/pos = Vector2( 0, 1 )
+blend_point_2/node = SubResource( 13 )
+blend_point_2/pos = Vector2( -1, 0 )
+blend_point_3/node = SubResource( 14 )
+blend_point_3/pos = Vector2( 1, 0 )
+blend_mode = 1
+
+[sub_resource type="AnimationNodeAnimation" id=18]
+animation = "left"
+
+[sub_resource type="AnimationNodeAnimation" id=19]
+animation = "right"
+
+[sub_resource type="AnimationNodeAnimation" id=20]
+animation = "idle down"
+
+[sub_resource type="AnimationNodeAnimation" id=21]
+animation = "idle up"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id=22]
+blend_point_0/node = SubResource( 18 )
+blend_point_0/pos = Vector2( -1, 0 )
+blend_point_1/node = SubResource( 19 )
+blend_point_1/pos = Vector2( 1, 0 )
+blend_point_2/node = SubResource( 20 )
+blend_point_2/pos = Vector2( 0, 1 )
+blend_point_3/node = SubResource( 21 )
+blend_point_3/pos = Vector2( 0, -1 )
+blend_mode = 1
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=23]
+switch_mode = 1
+
+[sub_resource type="AnimationNodeStateMachine" id=16]
+states/Idle/node = SubResource( 15 )
+states/Idle/position = Vector2( 180.333, 72.284 )
+states/Walk/node = SubResource( 22 )
+states/Walk/position = Vector2( 365.667, 72.6296 )
+transitions = [ "Idle", "Walk", SubResource( 23 ) ]
+start_node = "Idle"
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=17]
+
+[sub_resource type="RectangleShape2D" id=10]
+extents = Vector2( 7.5, 3 )
+
+[sub_resource type="RectangleShape2D" id=39]
+extents = Vector2( 14, 9.5 )
+
+[node name="KinematicBody2D" type="KinematicBody2D"]
+script = ExtResource( 2 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ESS" type="Label" parent="CanvasLayer"]
+visible = false
+margin_left = 25.0
+margin_top = 19.0
+margin_right = 290.0
+margin_bottom = 47.0
+custom_fonts/font = ExtResource( 3 )
+text = "exoskeleton strength: 100%"
+
+[node name="static" type="ColorRect" parent="CanvasLayer"]
+visible = false
+material = SubResource( 33 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( -9.5, -0.5 )
+texture = SubResource( 1 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+playback_speed = 2.0
+anims/RESET = SubResource( 2 )
+"anims/idle down" = SubResource( 3 )
+"anims/idle up" = SubResource( 5 )
+anims/left = SubResource( 7 )
+anims/right = SubResource( 9 )
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource( 16 )
+anim_player = NodePath("../AnimationPlayer")
+active = true
+parameters/playback = SubResource( 17 )
+parameters/Idle/blend_position = Vector2( 0.0157267, 0.84375 )
+parameters/Walk/blend_position = Vector2( 0, 0 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( -4, 16 )
+shape = SubResource( 10 )
+disabled = true
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2( -9.5, -1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2( 5, 17 )
+shape = SubResource( 39 )
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]
+[connection signal="area_exited" from="Area2D" to="." method="_on_Area2D_area_exited"]

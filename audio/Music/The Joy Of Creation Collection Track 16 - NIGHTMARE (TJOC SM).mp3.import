@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/The Joy Of Creation Collection Track 16 - NIGHTMARE (TJOC SM).mp3-0fef4045aa9a11c2ac838524c603a5d1.mp3str"
+
+[deps]
+
+source_file="res://audio/Music/The Joy Of Creation Collection Track 16 - NIGHTMARE (TJOC SM).mp3"
+dest_files=[ "res://.import/The Joy Of Creation Collection Track 16 - NIGHTMARE (TJOC SM).mp3-0fef4045aa9a11c2ac838524c603a5d1.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

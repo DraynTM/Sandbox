@@ -1,0 +1,357 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Fonts/MainFont.tres" type="DynamicFont" id=1]
+[ext_resource path="res://scripts/Tracks.gd" type="Script" id=2]
+[ext_resource path="res://audio/Sounds/fanfare5.mp3" type="AudioStream" id=3]
+[ext_resource path="res://Sprites/sparkle.png" type="Texture" id=4]
+[ext_resource path="res://scenes/Misc/test.tscn" type="PackedScene" id=5]
+
+[node name="Tracks" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_pivot_offset = Vector2( -302, 0 )
+script = ExtResource( 2 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.0705882, 0.0588235, 0.0862745, 0.92549 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="tracks_text" type="Label" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -53.0
+margin_top = 39.0
+margin_right = 59.0
+margin_bottom = 85.0
+custom_fonts/font = ExtResource( 1 )
+text = "TRACKS"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -491.0
+margin_top = -193.0
+margin_right = 490.0
+margin_bottom = 169.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="VBoxContainer" parent="VBoxContainer"]
+margin_right = 981.0
+margin_bottom = 89.0
+alignment = 1
+
+[node name="COD" type="Button" parent="VBoxContainer/HBoxContainer"]
+margin_right = 981.0
+margin_bottom = 27.0
+custom_fonts/font = ExtResource( 1 )
+text = "CURSE OF DREDBEAR - STEEL WOOL"
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="parish" type="Button" parent="VBoxContainer/HBoxContainer"]
+margin_top = 31.0
+margin_right = 981.0
+margin_bottom = 58.0
+custom_fonts/font = ExtResource( 1 )
+text = "PARISH - MIKE GENO"
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PRICE" type="Label" parent="VBoxContainer/HBoxContainer/parish"]
+modulate = Color( 1, 0.85098, 0, 1 )
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -159.5
+margin_top = -8.0
+margin_right = -47.5
+margin_bottom = 38.0
+custom_fonts/font = ExtResource( 1 )
+text = "2"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ttoacw" type="Button" parent="VBoxContainer/HBoxContainer"]
+margin_top = 62.0
+margin_right = 981.0
+margin_bottom = 89.0
+custom_fonts/font = ExtResource( 1 )
+text = "The tale of a Cruel World - DM DOKURO"
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PRICE" type="Label" parent="VBoxContainer/HBoxContainer/ttoacw"]
+modulate = Color( 1, 0.85098, 0, 1 )
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -234.5
+margin_top = -8.0
+margin_right = -122.5
+margin_bottom = 38.0
+custom_fonts/font = ExtResource( 1 )
+text = "6"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer3" type="VBoxContainer" parent="VBoxContainer"]
+margin_top = 93.0
+margin_right = 981.0
+margin_bottom = 213.0
+alignment = 1
+
+[node name="tjoc" type="Button" parent="VBoxContainer/HBoxContainer3"]
+margin_right = 981.0
+margin_bottom = 27.0
+custom_fonts/font = ExtResource( 1 )
+text = "TJOC Theme - Nikson"
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PRICE" type="Label" parent="VBoxContainer/HBoxContainer3/tjoc"]
+modulate = Color( 1, 0.85098, 0, 1 )
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -162.5
+margin_top = -9.0
+margin_right = -50.5
+margin_bottom = 37.0
+custom_fonts/font = ExtResource( 1 )
+text = "5"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="cn" type="Button" parent="VBoxContainer/HBoxContainer3"]
+margin_top = 31.0
+margin_right = 981.0
+margin_bottom = 58.0
+custom_fonts/font = ExtResource( 1 )
+text = "CN Theme - UCN"
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PRICE" type="Label" parent="VBoxContainer/HBoxContainer3/cn"]
+modulate = Color( 1, 0.85098, 0, 1 )
+margin_left = 396.0
+margin_top = 1.0
+margin_right = 406.0
+margin_bottom = 25.0
+custom_fonts/font = ExtResource( 1 )
+text = "3"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="thank_you" type="Button" parent="VBoxContainer/HBoxContainer3"]
+margin_top = 62.0
+margin_right = 981.0
+margin_bottom = 89.0
+custom_fonts/font = ExtResource( 1 )
+text = "Thank you for your patience - Leon Riskin"
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PRICE" type="Label" parent="VBoxContainer/HBoxContainer3/thank_you"]
+modulate = Color( 1, 0.85098, 0, 1 )
+margin_left = 305.0
+margin_top = 3.0
+margin_right = 315.0
+margin_bottom = 27.0
+custom_fonts/font = ExtResource( 1 )
+text = "3"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="fnaf3_lofi" type="Button" parent="VBoxContainer/HBoxContainer3"]
+margin_top = 93.0
+margin_right = 981.0
+margin_bottom = 120.0
+custom_fonts/font = ExtResource( 1 )
+text = "Die in a Fire - LoFi - Scrapbox02"
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PRICE" type="Label" parent="VBoxContainer/HBoxContainer3/fnaf3_lofi"]
+modulate = Color( 1, 0.85098, 0, 1 )
+margin_left = 341.0
+margin_top = 2.0
+margin_right = 352.0
+margin_bottom = 26.0
+custom_fonts/font = ExtResource( 1 )
+text = "6"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer2" type="VBoxContainer" parent="VBoxContainer"]
+margin_top = 217.0
+margin_right = 981.0
+margin_bottom = 306.0
+alignment = 1
+
+[node name="fnaf2_lofi" type="Button" parent="VBoxContainer/HBoxContainer2"]
+margin_right = 981.0
+margin_bottom = 27.0
+custom_fonts/font = ExtResource( 1 )
+text = "Its been so long - LoFi"
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PRICE" type="Label" parent="VBoxContainer/HBoxContainer2/fnaf2_lofi"]
+modulate = Color( 1, 0.85098, 0, 1 )
+margin_left = 385.0
+margin_top = 2.0
+margin_right = 396.0
+margin_bottom = 26.0
+custom_fonts/font = ExtResource( 1 )
+text = "6"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="vb" type="Button" parent="VBoxContainer/HBoxContainer2"]
+margin_top = 31.0
+margin_right = 981.0
+margin_bottom = 58.0
+custom_fonts/font = ExtResource( 1 )
+text = "Venta Black (Remastered) - Security Breach"
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PRICE" type="Label" parent="VBoxContainer/HBoxContainer2/vb"]
+modulate = Color( 1, 0.85098, 0, 1 )
+margin_left = 300.0
+margin_top = 3.0
+margin_right = 311.0
+margin_bottom = 27.0
+custom_fonts/font = ExtResource( 1 )
+text = "4"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="daycare" type="Button" parent="VBoxContainer/HBoxContainer2"]
+margin_top = 62.0
+margin_right = 981.0
+margin_bottom = 89.0
+custom_fonts/font = ExtResource( 1 )
+text = "Superstar Daycare - Security Breach"
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PRICE" type="Label" parent="VBoxContainer/HBoxContainer2/daycare"]
+modulate = Color( 1, 0.85098, 0, 1 )
+margin_left = 327.0
+margin_top = 3.0
+margin_right = 339.0
+margin_bottom = 27.0
+custom_fonts/font = ExtResource( 1 )
+text = "0"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LOAD" type="Button" parent="VBoxContainer"]
+margin_top = 310.0
+margin_right = 981.0
+margin_bottom = 337.0
+custom_fonts/font = ExtResource( 1 )
+text = "LOAD MUSIC FROM FILE"
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PRICE" type="Label" parent="VBoxContainer/LOAD"]
+modulate = Color( 1, 0.85098, 0, 1 )
+margin_left = 368.0
+margin_right = 380.0
+margin_bottom = 24.0
+custom_fonts/font = ExtResource( 1 )
+text = "7"
+align = 1
+valign = 1
+
+[node name="Buying_Sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+modulate = Color( 1, 0.843137, 0.686275, 0.0352941 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -575.0
+margin_top = -306.0
+margin_right = 80.0
+margin_bottom = -84.0
+rect_pivot_offset = Vector2( 52, 345 )
+mouse_filter = 2
+texture = ExtResource( 4 )
+expand = true
+
+[node name="TextureRect3" type="TextureRect" parent="."]
+modulate = Color( 0.686275, 0.756863, 1, 0.101961 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -109.0
+margin_top = 110.0
+margin_right = 546.0
+margin_bottom = 332.0
+mouse_filter = 2
+texture = ExtResource( 4 )
+expand = true
+
+[node name="test" parent="." instance=ExtResource( 5 )]
+position = Vector2( 0, 16 )

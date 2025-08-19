@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/FNaF 6 - Thank You For Your Patience (2).mp3-09c8cac3d69fbd6ff5fe4ad52397bc45.mp3str"
+
+[deps]
+
+source_file="res://audio/Music/FNaF 6 - Thank You For Your Patience (2).mp3"
+dest_files=[ "res://.import/FNaF 6 - Thank You For Your Patience (2).mp3-09c8cac3d69fbd6ff5fe4ad52397bc45.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

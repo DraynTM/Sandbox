@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/amb_people.mp3-6532fabb68599a969fce8d6aba590bb7.mp3str"
+
+[deps]
+
+source_file="res://audio/Music/amb_people.mp3"
+dest_files=[ "res://.import/amb_people.mp3-6532fabb68599a969fce8d6aba590bb7.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

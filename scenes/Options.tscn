@@ -1,0 +1,117 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Fonts/MainFont.tres" type="DynamicFont" id=2]
+[ext_resource path="res://scripts/Options.gd" type="Script" id=3]
+
+[node name="Options" type="Control"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -500.0
+margin_top = -300.0
+margin_right = 500.0
+margin_bottom = 300.0
+rect_pivot_offset = Vector2( -170, -16 )
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TabContainer" type="TabContainer" parent="."]
+margin_left = 293.0
+margin_top = 111.0
+margin_right = 707.0
+margin_bottom = 481.0
+custom_fonts/font = ExtResource( 2 )
+tab_align = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Video" type="Tabs" parent="TabContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 42.0
+margin_right = -4.0
+margin_bottom = -4.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Video"]
+anchor_left = 0.315
+anchor_top = 0.007
+anchor_right = 0.465
+anchor_bottom = 0.871
+margin_left = -16.89
+margin_top = -0.268
+margin_right = 132.21
+margin_bottom = 39.796
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Video_Settings" type="Label" parent="TabContainer/Video/VBoxContainer"]
+margin_right = 210.0
+margin_bottom = 24.0
+custom_fonts/font = ExtResource( 2 )
+text = "VIDEO SETTNGS"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HSeparator" type="HSeparator" parent="TabContainer/Video/VBoxContainer"]
+margin_top = 28.0
+margin_right = 210.0
+margin_bottom = 32.0
+
+[node name="FullScreen" type="CheckBox" parent="TabContainer/Video/VBoxContainer"]
+margin_top = 36.0
+margin_right = 210.0
+margin_bottom = 68.0
+focus_mode = 0
+custom_fonts/font = ExtResource( 2 )
+text = "FULL SCREEN"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VSync" type="CheckBox" parent="TabContainer/Video/VBoxContainer"]
+margin_top = 72.0
+margin_right = 210.0
+margin_bottom = 104.0
+focus_mode = 0
+custom_fonts/font = ExtResource( 2 )
+text = "VSync"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HSlider" type="HSlider" parent="TabContainer/Video/VBoxContainer"]
+visible = false
+margin_top = 108.0
+margin_right = 210.0
+margin_bottom = 124.0
+min_value = 1.0
+max_value = 1000.0
+value = 600.0
+
+[node name="FPS" type="Label" parent="TabContainer/Video/VBoxContainer"]
+margin_top = 108.0
+margin_right = 210.0
+margin_bottom = 132.0
+custom_fonts/font = ExtResource( 2 )
+text = "FPS"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sound" type="Tabs" parent="TabContainer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 42.0
+margin_right = -4.0
+margin_bottom = -4.0

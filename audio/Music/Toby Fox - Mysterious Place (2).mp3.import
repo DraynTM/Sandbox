@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Toby Fox - Mysterious Place (2).mp3-bd3be093f1231d5a1c16e16aa1dbef31.mp3str"
+
+[deps]
+
+source_file="res://audio/Music/Toby Fox - Mysterious Place (2).mp3"
+dest_files=[ "res://.import/Toby Fox - Mysterious Place (2).mp3-bd3be093f1231d5a1c16e16aa1dbef31.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

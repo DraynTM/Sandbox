@@ -1,0 +1,192 @@
+[gd_scene load_steps=18 format=2]
+
+[ext_resource path="res://scenes/Guard.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/Animatronic.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/Maps/fnaf_3.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Sprites/light.png" type="Texture" id=4]
+[ext_resource path="res://audio/Sounds/Desolate_Underworld2.ogg" type="AudioStream" id=5]
+[ext_resource path="res://scripts/Misc/map1.gd" type="Script" id=6]
+[ext_resource path="res://scenes/JUMPSCARE.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scenes/console.tscn" type="PackedScene" id=8]
+[ext_resource path="res://scenes/Lose_Screen.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Sprites/player.png" type="Texture" id=10]
+[ext_resource path="res://shaders/vignette.tres" type="Material" id=11]
+[ext_resource path="res://scenes/Misc/Countdown.tscn" type="PackedScene" id=12]
+
+[sub_resource type="RectangleShape2D" id=20]
+
+[sub_resource type="RectangleShape2D" id=17]
+extents = Vector2( 6, 1.25 )
+
+[sub_resource type="Environment" id=8]
+background_mode = 4
+glow_intensity = 1.56
+glow_strength = 1.54
+glow_bloom = 0.04
+glow_hdr_scale = 1.77
+adjustment_enabled = true
+
+[sub_resource type="Animation" id=18]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:environment:adjustment_brightness")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 1.0 ]
+}
+
+[sub_resource type="Animation" id=19]
+resource_name = "fade"
+length = 3.813
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:environment:adjustment_brightness")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 3.8 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.01, 1.0 ]
+}
+
+[node name="Map2" type="Node2D"]
+script = ExtResource( 6 )
+achiv = 1
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+material = ExtResource( 11 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="BG" type="CanvasLayer" parent="."]
+layer = -5
+
+[node name="ColorRect" type="ColorRect" parent="BG"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 1 )
+
+[node name="JUMPSCARE" parent="." instance=ExtResource( 7 )]
+layer = 5
+
+[node name="Ambient" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+autoplay = true
+
+[node name="Light2D" type="Light2D" parent="."]
+position = Vector2( 772.5, 1326 )
+scale = Vector2( 0.642714, 0.395167 )
+texture = ExtResource( 4 )
+texture_scale = 0.43
+color = Color( 0.92549, 0.92549, 0.92549, 1 )
+energy = 1.05
+range_height = -3.1
+shadow_color = Color( 0, 0, 0, 1 )
+shadow_filter = 1
+
+[node name="Light2D2" type="Light2D" parent="."]
+position = Vector2( 1029, 856 )
+scale = Vector2( 0.193932, 0.245276 )
+texture = ExtResource( 4 )
+texture_scale = 0.58
+color = Color( 0.972549, 0.972549, 0.972549, 1 )
+energy = 0.95
+range_height = -3.1
+shadow_color = Color( 0, 0, 0, 1 )
+shadow_filter = 1
+
+[node name="Light2D3" type="Light2D" parent="."]
+position = Vector2( 746, 897 )
+scale = Vector2( 0.518588, 0.245276 )
+texture = ExtResource( 4 )
+texture_scale = 0.58
+color = Color( 0.972549, 0.972549, 0.972549, 1 )
+energy = 0.95
+range_height = -3.1
+shadow_color = Color( 0, 0, 0, 1 )
+shadow_filter = 1
+
+[node name="Guard" parent="." instance=ExtResource( 1 )]
+position = Vector2( 792, 1342 )
+scale = Vector2( 2, 2 )
+z_index = 1
+
+[node name="Area2D" type="Area2D" parent="Guard"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Guard/Area2D"]
+shape = SubResource( 20 )
+
+[node name="Animatronic" parent="." instance=ExtResource( 2 )]
+pause_mode = 1
+position = Vector2( 1018, 723 )
+z_index = 2
+speed = 65
+
+[node name="Camera2D2" type="Camera2D" parent="Animatronic"]
+position = Vector2( 458.342, 336.419 )
+smoothing_enabled = true
+smoothing_speed = 7.0
+
+[node name="Light2D3" type="Light2D" parent="Animatronic"]
+position = Vector2( 1, 2 )
+scale = Vector2( 0.0590223, 0.0516962 )
+texture = ExtResource( 4 )
+texture_scale = 1.88
+color = Color( 0.839216, 0.796078, 1, 1 )
+energy = 1.08
+range_height = -3.1
+shadow_color = Color( 0, 0, 0, 1 )
+shadow_filter = 1
+
+[node name="Area2D" type="Area2D" parent="Animatronic"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Animatronic/Area2D"]
+position = Vector2( 1, 13.75 )
+shape = SubResource( 17 )
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( 8 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="WorldEnvironment"]
+autoplay = "fade"
+anims/RESET = SubResource( 18 )
+anims/fade = SubResource( 19 )
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color( 0.14902, 0.290196, 0.168627, 1 )
+
+[node name="Player" type="Sprite" parent="."]
+position = Vector2( 2224, 247 )
+texture = ExtResource( 10 )
+
+[node name="Level" parent="." instance=ExtResource( 3 )]
+position = Vector2( -103, -116 )
+
+[node name="Console" parent="." instance=ExtResource( 8 )]
+
+[node name="Countdown" parent="." instance=ExtResource( 12 )]
+
+[node name="Lose_Screen" parent="." instance=ExtResource( 9 )]
+
+[node name="Spawnpoint" type="Position2D" parent="."]
+position = Vector2( 952, 758 )
+scale = Vector2( 2, 1 )
+z_index = 10
+
+[connection signal="area_entered" from="Guard/Area2D" to="." method="_on_Area2D_area_entered"]

@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/The forbidden Nocturne_2.mp3-e0d5ca3de9b99ae765e39cd80e38bafc.mp3str"
+
+[deps]
+
+source_file="res://audio/Music/The forbidden Nocturne_2.mp3"
+dest_files=[ "res://.import/The forbidden Nocturne_2.mp3-e0d5ca3de9b99ae765e39cd80e38bafc.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

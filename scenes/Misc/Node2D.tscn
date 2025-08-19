@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://scenes/Guard_Chasing.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/Animatronic.tscn" type="PackedScene" id=2]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Animatronic" parent="." instance=ExtResource( 2 )]
+position = Vector2( 440, 247 )
+
+[node name="KinematicBody2D" parent="." instance=ExtResource( 1 )]
+position = Vector2( 312, 176 )
+speed = -55

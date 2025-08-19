@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/y2mate.com - Die in a Fire The Living Tombstone Lofi Remix.mp3-5679f8b4b6ea363f17851ce8eeb17d4a.mp3str"
+
+[deps]
+
+source_file="res://audio/Music/y2mate.com - Die in a Fire The Living Tombstone Lofi Remix.mp3"
+dest_files=[ "res://.import/y2mate.com - Die in a Fire The Living Tombstone Lofi Remix.mp3-5679f8b4b6ea363f17851ce8eeb17d4a.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

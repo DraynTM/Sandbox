@@ -1,0 +1,335 @@
+[gd_scene load_steps=29 format=2]
+
+[ext_resource path="res://scenes/Guard.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/Animatronic.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Sprites/faz-toilet-png.jpg" type="Texture" id=3]
+[ext_resource path="res://Sprites/light.png" type="Texture" id=4]
+[ext_resource path="res://Sprites/Spritesheets/FnaF 1 Spritesheet.png" type="Texture" id=5]
+[ext_resource path="res://scripts/Misc/map1.gd" type="Script" id=6]
+[ext_resource path="res://scenes/JUMPSCARE.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scenes/Maps/fnaf_1.tscn.tscn" type="PackedScene" id=8]
+[ext_resource path="res://audio/Music/Dark amb v4.wav" type="AudioStream" id=9]
+[ext_resource path="res://Sprites/player.png" type="Texture" id=10]
+[ext_resource path="res://shaders/vignette.tres" type="Material" id=11]
+[ext_resource path="res://scenes/console.tscn" type="PackedScene" id=12]
+[ext_resource path="res://scenes/Misc/Countdown.tscn" type="PackedScene" id=13]
+[ext_resource path="res://scenes/Lose_Screen.tscn" type="PackedScene" id=14]
+[ext_resource path="res://Sprites/character_editor/abilities/wings.png" type="Texture" id=15]
+
+[sub_resource type="AtlasTexture" id=14]
+atlas = ExtResource( 5 )
+region = Rect2( 819.067, 10.5617, 900.472, 1139.3 )
+
+[sub_resource type="Animation" id=15]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 1.08 ]
+}
+
+[sub_resource type="Animation" id=16]
+resource_name = "light"
+length = 1.396
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 1, 1.025 ),
+"transitions": PoolRealArray( 1, 1, 26.9087, 0.129408 ),
+"update": 0,
+"values": [ 1.08, 1.08, 1.08, 0.06 ]
+}
+
+[sub_resource type="RectangleShape2D" id=21]
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=20]
+
+[sub_resource type="RectangleShape2D" id=17]
+extents = Vector2( 6, 1.25 )
+
+[sub_resource type="OccluderPolygon2D" id=9]
+cull_mode = 1
+polygon = PoolVector2Array( 231.764, 1712.32, 350.565, 1710.99, 349.357, 2145.46, 229.086, 2148.13 )
+
+[sub_resource type="OccluderPolygon2D" id=10]
+cull_mode = 1
+polygon = PoolVector2Array( -110.962, 3014.09, 50.9023, 3013.17, 51.1978, 2931.6, 89.061, 2931.83, 89.2261, 3013.21, 252.384, 3012.05, 251.495, 2932.26, 289.756, 2932.68, 290.548, 3013.74, 452.183, 3012.61, 451.621, 3047.97, -110.962, 3049.72 )
+
+[sub_resource type="OccluderPolygon2D" id=11]
+cull_mode = 1
+polygon = PoolVector2Array( 52.6558, 2770.29, 90.0314, 2770.29, 90.5181, 2690.49, 251.561, 2690.3, 251.213, 2770.12, 289.256, 2769.95, 289.883, 2290.13, 329.862, 2290.48, 329.731, 2253.09, 252.281, 2252.53, 251.559, 2272.69, 121.579, 2272.85, 121.579, 2258.44, 93.3832, 2258.18, 93.2065, 2272.5, 89.5825, 2272.5, 90.0244, 2252.17, 11.2703, 2252.08, 11.1529, 2290.33, 51.9213, 2290.69 )
+
+[sub_resource type="OccluderPolygon2D" id=12]
+polygon = PoolVector2Array( -189.997, 3045.43, -142.78, 3046.32, -142.334, 2612.9, -177.079, 2612.46, -178.416, 2693.53, -341.895, 2693.53, -341.45, 2370.13, -179.306, 2369.69, -178.861, 2448.08, -141.443, 2449.42, -140.552, 2290.4, -101.353, 2290.84, -100.398, 2254.74, -260.76, 2252.96, -260.76, 2165.65, -577.92, 2165.65, -578.342, 1809.18, -263.202, 1811.56, -261.162, 1805, -341.979, 1805.56, -341.11, 1653.76, -376.32, 1653.76, -377.069, 1773.63, -550.873, 1772.88, -554.619, 1451.49, -380.066, 1449.99, -378.568, 1488.2, -341.859, 1488.95, -341.11, 1397.55, -614.551, 1398.3, -615.273, 2198.54, -406.363, 2280.95, -294.912, 2337.36, -395.76, 2317.53, -393.69, 2735.14, -166.767, 2740.48 )
+
+[sub_resource type="Environment" id=8]
+background_mode = 4
+dof_blur_far_distance = 9.75
+dof_blur_near_distance = 1.54
+glow_blend_mode = 0
+glow_hdr_scale = 1.77
+adjustment_enabled = true
+
+[sub_resource type="Animation" id=18]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:environment:adjustment_brightness")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 1.0 ]
+}
+
+[sub_resource type="Animation" id=19]
+resource_name = "fade"
+length = 3.813
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:environment:adjustment_brightness")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 3.8 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.01, 1.0 ]
+}
+
+[node name="Map1" type="Node2D"]
+script = ExtResource( 6 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+material = ExtResource( 11 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="BG" type="CanvasLayer" parent="."]
+layer = -5
+
+[node name="ColorRect" type="ColorRect" parent="BG"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 1 )
+
+[node name="JUMPSCARE" parent="." instance=ExtResource( 7 )]
+layer = 5
+
+[node name="Ambient" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 9 )
+autoplay = true
+
+[node name="map" type="Sprite" parent="."]
+visible = false
+position = Vector2( 895, 1139 )
+scale = Vector2( 2, 2 )
+texture = SubResource( 14 )
+
+[node name="Light2D" type="Light2D" parent="."]
+position = Vector2( 801, 1337 )
+scale = Vector2( 0.331408, 0.311758 )
+texture = ExtResource( 4 )
+texture_scale = 1.29
+color = Color( 1, 0.74902, 0.74902, 1 )
+energy = 1.08
+range_height = -3.1
+shadow_color = Color( 0, 0, 0, 1 )
+shadow_filter = 1
+
+[node name="Light2D2" type="Light2D" parent="."]
+position = Vector2( 486, 702.182 )
+scale = Vector2( 0.331408, 0.553317 )
+texture = ExtResource( 4 )
+texture_scale = 0.43
+color = Color( 0.478431, 0.411765, 0.411765, 1 )
+energy = 1.08
+range_height = -3.1
+shadow_color = Color( 0, 0, 0, 1 )
+shadow_filter = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Light2D2"]
+autoplay = "light"
+anims/RESET = SubResource( 15 )
+anims/light = SubResource( 16 )
+
+[node name="Guard" parent="." instance=ExtResource( 1 )]
+position = Vector2( 792, 1342 )
+scale = Vector2( 2, 2 )
+z_index = 1
+
+[node name="Area2D" type="Area2D" parent="Guard"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Guard/Area2D"]
+shape = SubResource( 21 )
+
+[node name="Animatronic" parent="." instance=ExtResource( 2 )]
+pause_mode = 1
+position = Vector2( 790, 599 )
+z_index = 2
+
+[node name="custom" parent="Animatronic" index="0"]
+extra_ability = 2
+color_hat = Color( 4.87, 1.54454, 0, 1 )
+color_eyes = Color( 1, 1, 1, 0.909804 )
+color_eyes2 = Color( 0.0461269, 0.00262951, 0.124003, 0.878431 )
+color_head = Color( 0.358378, 0, 1, 0.984314 )
+color_body = Color( 0.364362, 0, 1, 0.984314 )
+color_legs = Color( 0.350399, 0, 1, 0.984314 )
+
+[node name="Legs" parent="Animatronic" index="3"]
+modulate = Color( 0.350399, 0, 1, 0.984314 )
+
+[node name="Bodys" parent="Animatronic" index="4"]
+modulate = Color( 0.364362, 0, 1, 0.984314 )
+
+[node name="Heads" parent="Animatronic" index="5"]
+modulate = Color( 0.358378, 0, 1, 0.984314 )
+
+[node name="Hats" parent="Animatronic" index="6"]
+modulate = Color( 4.87, 1.54454, 0, 1 )
+
+[node name="2" parent="Animatronic/Eyes" index="2"]
+modulate = Color( 0.0461269, 0.00262951, 0.124003, 0.878431 )
+
+[node name="1" parent="Animatronic/Eyes" index="3"]
+modulate = Color( 1, 1, 1, 0.909804 )
+
+[node name="AnimationTree" parent="Animatronic" index="11"]
+parameters/playback = SubResource( 20 )
+
+[node name="Icon2" parent="Animatronic/HUD/Abilities" index="2"]
+texture = ExtResource( 15 )
+
+[node name="Camera2D2" type="Camera2D" parent="Animatronic"]
+position = Vector2( 458.342, 336.419 )
+smoothing_enabled = true
+smoothing_speed = 7.0
+
+[node name="Light2D3" type="Light2D" parent="Animatronic"]
+position = Vector2( 1, 2 )
+scale = Vector2( 0.0590223, 0.0516962 )
+texture = ExtResource( 4 )
+texture_scale = 1.88
+color = Color( 0.839216, 0.796078, 1, 1 )
+energy = 1.08
+range_height = -3.1
+shadow_color = Color( 0, 0, 0, 1 )
+shadow_filter = 1
+
+[node name="Light2D4" type="Light2D" parent="Animatronic"]
+position = Vector2( 1, 2 )
+scale = Vector2( 0.0590223, 0.0516962 )
+texture = ExtResource( 4 )
+texture_scale = 2.41
+color = Color( 0.839216, 0.796078, 1, 1 )
+energy = 0.54
+range_height = -3.1
+shadow_color = Color( 0, 0, 0, 1 )
+shadow_filter = 1
+
+[node name="Area2D" type="Area2D" parent="Animatronic"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Animatronic/Area2D"]
+position = Vector2( 1, 13.75 )
+shape = SubResource( 17 )
+
+[node name="Shadows" type="LightOccluder2D" parent="."]
+visible = false
+position = Vector2( 624.889, -813.103 )
+occluder = SubResource( 9 )
+
+[node name="LightOccluder2D2" type="LightOccluder2D" parent="Shadows"]
+position = Vector2( -399.574, 1.42456 )
+occluder = SubResource( 9 )
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="Shadows"]
+position = Vector2( -199.063, 1.65808 )
+occluder = SubResource( 9 )
+
+[node name="LightOccluder2D4" type="LightOccluder2D" parent="Shadows"]
+position = Vector2( 201.105, 1.09424 )
+occluder = SubResource( 9 )
+
+[node name="LightOccluder2D3" type="LightOccluder2D" parent="Shadows"]
+occluder = SubResource( 10 )
+
+[node name="LightOccluder2D5" type="LightOccluder2D" parent="Shadows"]
+occluder = SubResource( 11 )
+
+[node name="LightOccluder2D6" type="LightOccluder2D" parent="Shadows"]
+position = Vector2( 30.2906, 0 )
+occluder = SubResource( 12 )
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( 8 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="WorldEnvironment"]
+autoplay = "fade"
+anims/RESET = SubResource( 18 )
+anims/fade = SubResource( 19 )
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color( 0.164706, 0.145098, 0.145098, 1 )
+
+[node name="Faz-toilet" type="Sprite" parent="."]
+position = Vector2( 1672, 231 )
+scale = Vector2( 0.173827, 0.176609 )
+texture = ExtResource( 3 )
+
+[node name="Light2D2" type="Light2D" parent="Faz-toilet"]
+position = Vector2( 28.7627, 181.191 )
+scale = Vector2( 1.90654, 1.76524 )
+texture = ExtResource( 4 )
+texture_scale = 3.8
+energy = 0.76
+range_height = -3.1
+shadow_color = Color( 0, 0, 0, 1 )
+shadow_filter = 1
+
+[node name="Level" parent="." instance=ExtResource( 8 )]
+position = Vector2( -46, -251 )
+
+[node name="Player" type="Sprite" parent="."]
+position = Vector2( 2224, 247 )
+texture = ExtResource( 10 )
+
+[node name="Console" parent="." instance=ExtResource( 12 )]
+
+[node name="Countdown" parent="." instance=ExtResource( 13 )]
+
+[node name="Lose_Screen" parent="." instance=ExtResource( 14 )]
+
+[node name="Spawnpoint" type="Position2D" parent="."]
+position = Vector2( 793, 639 )
+scale = Vector2( 2, 1 )
+z_index = 10
+
+[connection signal="area_entered" from="Guard/Area2D" to="." method="_on_Area2D_area_entered"]
+[connection signal="area_entered" from="Animatronic/Wing/Halloween/Area2D" to="Guard" method="_on_Halloween_area_entered"]
+
+[editable path="Animatronic"]

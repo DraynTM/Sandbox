@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/noch-neskolko-sverchkov-34043.ogg-6a9b2b5251374469cc20955fbe28a415.oggstr"
+
+[deps]
+
+source_file="res://audio/Music/noch-neskolko-sverchkov-34043.ogg"
+dest_files=[ "res://.import/noch-neskolko-sverchkov-34043.ogg-6a9b2b5251374469cc20955fbe28a415.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

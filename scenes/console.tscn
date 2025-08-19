@@ -1,0 +1,46 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Menu.tres" type="Theme" id=1]
+[ext_resource path="res://scripts/console.gd" type="Script" id=2]
+[ext_resource path="res://Fonts/MainFont.tres" type="DynamicFont" id=3]
+
+[node name="Console" type="CanvasLayer"]
+layer = 99
+
+[node name="LineEdit" type="LineEdit" parent="."]
+visible = false
+margin_left = 29.0
+margin_top = 524.0
+margin_right = 440.0
+margin_bottom = 574.0
+theme = ExtResource( 1 )
+custom_fonts/font = ExtResource( 3 )
+text = "/"
+expand_to_text_length = true
+clear_button_enabled = true
+placeholder_text = "/"
+caret_blink = true
+caret_blink_speed = 0.5
+script = ExtResource( 2 )
+
+[node name="ItemList" type="ItemList" parent="."]
+visible = false
+margin_left = 31.0
+margin_top = 297.0
+margin_right = 408.0
+margin_bottom = 525.0
+theme = ExtResource( 1 )
+custom_fonts/font = ExtResource( 3 )
+select_mode = 1
+
+[node name="Label" type="Label" parent="."]
+visible = false
+margin_left = 33.0
+margin_top = 495.0
+margin_right = 73.0
+margin_bottom = 516.0
+custom_fonts/font = ExtResource( 3 )
+text = "Text"
+align = 3
+
+[connection signal="text_entered" from="LineEdit" to="LineEdit" method="_on_LineEdit_text_entered"]

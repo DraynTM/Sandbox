@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/FNaF Help Wanted - Curse of Dreadbear menu theme.ogg-0d42a5f2631eb83e157509f619b4b2eb.oggstr"
+
+[deps]
+
+source_file="res://audio/Music/FNaF Help Wanted - Curse of Dreadbear menu theme.ogg"
+dest_files=[ "res://.import/FNaF Help Wanted - Curse of Dreadbear menu theme.ogg-0d42a5f2631eb83e157509f619b4b2eb.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

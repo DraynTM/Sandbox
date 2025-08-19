@@ -1,0 +1,1219 @@
+[gd_scene load_steps=40 format=2]
+
+[ext_resource path="res://scenes/Animatronic.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scripts/Animatronic editor.gd" type="Script" id=2]
+[ext_resource path="res://Menu.tres" type="Theme" id=3]
+[ext_resource path="res://Fonts/MainFont.tres" type="DynamicFont" id=4]
+[ext_resource path="res://scenes/Backgrounds.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scripts/BG.gd" type="Script" id=6]
+[ext_resource path="res://scripts/Backgrounds.gd" type="Script" id=7]
+[ext_resource path="res://Sprites/Backgrounds/bg5.jpg" type="Texture" id=8]
+[ext_resource path="res://scenes/Faz_Coins.tscn" type="PackedScene" id=9]
+[ext_resource path="res://shaders/vignette.tres" type="Material" id=10]
+[ext_resource path="res://audio/Music/Scott Cawthon - Custom Night Menu.mp3" type="AudioStream" id=11]
+[ext_resource path="res://Fonts/bebasneuecyrillic.ttf" type="DynamicFontData" id=12]
+[ext_resource path="res://Sprites/character_editor/abilities/mouse.png" type="Texture" id=13]
+[ext_resource path="res://Sprites/character_editor/abilities/awareness.png" type="Texture" id=14]
+[ext_resource path="res://Sprites/character_editor/abilities/teleport.png" type="Texture" id=15]
+[ext_resource path="res://Sprites/character_editor/abilities/speed.png" type="Texture" id=16]
+[ext_resource path="res://Sprites/20220212_214342.4LYEZ.png" type="Texture" id=17]
+[ext_resource path="res://Sprites/character_editor/abilities/speed2.png" type="Texture" id=18]
+[ext_resource path="res://Sprites/character_editor/abilities/speed5x.png" type="Texture" id=19]
+[ext_resource path="res://audio/Sounds/Menu_Tick.wav" type="AudioStream" id=20]
+[ext_resource path="res://audio/Sounds/fanfare5.mp3" type="AudioStream" id=21]
+[ext_resource path="res://Fonts/NicholsonGothicRegular.otf" type="DynamicFontData" id=22]
+[ext_resource path="res://Sprites/sparkle.png" type="Texture" id=23]
+[ext_resource path="res://Sprites/white.png" type="Texture" id=24]
+[ext_resource path="res://shaders/chromatic.tres" type="Material" id=25]
+[ext_resource path="res://Sprites/character_editor/abilities/guitar.png" type="Texture" id=26]
+[ext_resource path="res://Sprites/character_editor/abilities/binocle.png" type="Texture" id=27]
+[ext_resource path="res://Sprites/character_editor/abilities/halloween.png" type="Texture" id=28]
+[ext_resource path="res://Sprites/character_editor/abilities/wings.png" type="Texture" id=29]
+
+[sub_resource type="DynamicFont" id=1]
+size = 25
+outline_size = 2
+outline_color = Color( 0, 0, 0, 1 )
+use_filter = true
+font_data = ExtResource( 12 )
+
+[sub_resource type="AtlasTexture" id=8]
+atlas = ExtResource( 15 )
+region = Rect2( 8.31263, 1.07505, 5.00553, 5.5617 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 47
+use_filter = true
+font_data = ExtResource( 22 )
+
+[sub_resource type="Animation" id=9]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=10]
+resource_name = "fade"
+length = 2.092
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1.9 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 1 ), Color( 0, 0, 0, 0 ) ]
+}
+
+[sub_resource type="Curve" id=3]
+_data = [ Vector2( 0.119128, 0.757669 ), 0.0, 0.0, 0, 0, Vector2( 0.65604, 0.58589 ), -0.192444, -0.192444, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="Gradient" id=4]
+offsets = PoolRealArray( 0, 0.0246914, 1 )
+colors = PoolColorArray( 0, 0, 0, 1, 0.0740741, 0.0740741, 0.0740741, 1, 1, 1, 1, 1 )
+
+[sub_resource type="Shader" id=6]
+code = "/*
+Shader from Godot Shaders - the free shader library.
+godotshaders.com/shader/god-rays
+
+Feel free to use, improve and change this shader according to your needs
+and consider sharing the modified result on godotshaders.com.
+*/
+
+shader_type canvas_item;
+
+uniform float angle = -0.3;
+uniform float position = -0.2;
+uniform float spread : hint_range(0.0, 1.0) = 0.5;
+uniform float cutoff : hint_range(-1.0, 1.0) = 0.1;
+uniform float falloff : hint_range(0.0, 1.0) = 0.2;
+uniform float edge_fade : hint_range(0.0, 1.0) = 0.15;
+
+uniform float speed = 1.0;
+uniform float ray1_density = 8.0;
+uniform float ray2_density = 30.0;
+uniform float ray2_intensity : hint_range(0.0, 1.0) = 0.3;
+
+uniform vec4 color : hint_color = vec4(1.0, 0.9, 0.65, 0.8);
+
+uniform bool hdr = false;
+uniform float seed = 5.0;
+
+// Random and noise functions from Book of Shader's chapter on Noise.
+float random(vec2 _uv) {
+    return fract(sin(dot(_uv.xy,
+                         vec2(12.9898, 78.233))) *
+        43758.5453123);
+}
+
+float noise (in vec2 uv) {
+    vec2 i = floor(uv);
+    vec2 f = fract(uv);
+
+    // Four corners in 2D of a tile
+    float a = random(i);
+    float b = random(i + vec2(1.0, 0.0));
+    float c = random(i + vec2(0.0, 1.0));
+    float d = random(i + vec2(1.0, 1.0));
+
+
+    // Smooth Interpolation
+
+    // Cubic Hermine Curve. Same as SmoothStep()
+    vec2 u = f * f * (3.0-2.0 * f);
+
+    // Mix 4 coorners percentages
+    return mix(a, b, u.x) +
+            (c - a)* u.y * (1.0 - u.x) +
+            (d - b) * u.x * u.y;
+}
+
+mat2 rotate(float _angle){
+    return mat2(vec2(cos(_angle), -sin(_angle)),
+                vec2(sin(_angle), cos(_angle)));
+}
+
+vec4 screen(vec4 base, vec4 blend){
+	return 1.0 - (1.0 - base) * (1.0 - blend);
+}
+
+void fragment()
+{
+	
+	// Rotate, skew and move the UVs
+	vec2 transformed_uv = ( rotate(angle) * (UV - position) )  / ( (UV.y + spread) - (UV.y * spread) );
+	
+	// Animate the ray according the the new transformed UVs
+	vec2 ray1 = vec2(transformed_uv.x * ray1_density + sin(TIME * 0.1 * speed) * (ray1_density * 0.2) + seed, 1.0);
+	vec2 ray2 = vec2(transformed_uv.x * ray2_density + sin(TIME * 0.2 * speed) * (ray1_density * 0.2) + seed, 1.0);
+	
+	// Cut off the ray's edges
+	float cut = step(cutoff, transformed_uv.x) * step(cutoff, 1.0 - transformed_uv.x);
+	ray1 *= cut;
+	ray2 *= cut;
+	
+	// Apply the noise pattern (i.e. create the rays)
+	float rays;
+	
+	if (hdr){
+		// This is not really HDR, but check this to not clamp the two merged rays making 
+		// their values go over 1.0. Can make for some nice effect
+		rays = noise(ray1) + (noise(ray2) * ray2_intensity);
+	}
+	else{
+		 rays = clamp(noise(ray1) + (noise(ray2) * ray2_intensity), 0., 1.);
+	}
+	
+	// Fade out edges
+	rays *= smoothstep(0.0, falloff, (1.0 - UV.y)); // Bottom
+	rays *= smoothstep(0.0 + cutoff, edge_fade + cutoff, transformed_uv.x); // Left
+	rays *= smoothstep(0.0 + cutoff, edge_fade + cutoff, 1.0 - transformed_uv.x); // Right
+	
+	// Color to the rays
+	vec3 shine = vec3(rays) * color.rgb;
+
+	// Try different blending modes for a nicer effect. \"Screen\" is included in the code,
+	// but take a look at https://godotshaders.com/snippet/blending-modes/ for more.
+	// With \"Screen\" blend mode:
+	shine = screen(texture(SCREEN_TEXTURE, SCREEN_UV), vec4(color)).rgb;
+	
+	COLOR = vec4(shine, rays * color.a);
+}"
+
+[sub_resource type="ShaderMaterial" id=7]
+shader = SubResource( 6 )
+shader_param/angle = -0.3
+shader_param/position = -0.2
+shader_param/spread = 0.733
+shader_param/cutoff = 0.1
+shader_param/falloff = 0.339
+shader_param/edge_fade = 0.272
+shader_param/speed = 2.0
+shader_param/ray1_density = 9.51
+shader_param/ray2_density = 30.0
+shader_param/ray2_intensity = 0.3
+shader_param/color = Color( 1, 0.756863, 0.4, 0.0980392 )
+shader_param/hdr = false
+shader_param/seed = 5.0
+
+[sub_resource type="Environment" id=5]
+background_mode = 4
+glow_enabled = true
+glow_levels/4 = true
+glow_levels/6 = true
+glow_levels/7 = true
+glow_intensity = 2.0
+glow_strength = 1.3
+
+[node name="Animatronic editor" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_pivot_offset = Vector2( -220, -17 )
+
+[node name="Animatronic" parent="." instance=ExtResource( 1 )]
+position = Vector2( 490, 339 )
+z_index = 1
+can_move = false
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 512, 317 )
+current = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+script = ExtResource( 2 )
+
+[node name="Customizing_Character" type="Control" parent="CanvasLayer"]
+
+[node name="Abilities" type="Control" parent="CanvasLayer/Customizing_Character"]
+visible = false
+margin_left = -15.0
+margin_top = -12.0
+margin_right = 979.0
+margin_bottom = 587.0
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/Customizing_Character/Abilities"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = 815.0
+margin_bottom = 491.0
+color = Color( 0.0392157, 0.0313726, 0.0313726, 0.717647 )
+
+[node name="Speed" type="TextureButton" parent="CanvasLayer/Customizing_Character/Abilities"]
+margin_left = 256.0
+margin_top = 259.0
+margin_right = 336.0
+margin_bottom = 338.0
+texture_normal = ExtResource( 18 )
+expand = true
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="CanvasLayer/Customizing_Character/Abilities/Speed"]
+margin_left = -13.0
+margin_top = 83.0
+margin_right = 94.0
+margin_bottom = 113.0
+custom_fonts/font = SubResource( 1 )
+text = "SPEED"
+align = 1
+
+[node name="Speed2" type="TextureButton" parent="CanvasLayer/Customizing_Character/Abilities"]
+margin_left = 346.0
+margin_top = 260.0
+margin_right = 426.0
+margin_bottom = 339.0
+texture_normal = ExtResource( 16 )
+expand = true
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="CanvasLayer/Customizing_Character/Abilities/Speed2"]
+margin_left = -13.0
+margin_top = 83.0
+margin_right = 94.0
+margin_bottom = 113.0
+custom_fonts/font = SubResource( 1 )
+text = "SPEED lvl 2 "
+align = 1
+
+[node name="price" type="TextureRect" parent="CanvasLayer/Customizing_Character/Abilities/Speed2"]
+margin_left = 29.0
+margin_top = -35.0
+margin_right = 69.0
+texture = ExtResource( 17 )
+expand = true
+stretch_mode = 6
+
+[node name="Label" type="Label" parent="CanvasLayer/Customizing_Character/Abilities/Speed2/price"]
+margin_left = -16.0
+margin_top = 7.0
+margin_right = 4.0
+margin_bottom = 37.0
+custom_fonts/font = SubResource( 1 )
+text = "35"
+align = 1
+
+[node name="Sedative" type="TextureButton" parent="CanvasLayer/Customizing_Character/Abilities"]
+margin_left = 444.0
+margin_top = 261.0
+margin_right = 524.0
+margin_bottom = 340.0
+texture_normal = ExtResource( 14 )
+expand = true
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="CanvasLayer/Customizing_Character/Abilities/Sedative"]
+margin_left = -13.0
+margin_top = 83.0
+margin_right = 94.0
+margin_bottom = 113.0
+custom_fonts/font = SubResource( 1 )
+text = "sedative"
+align = 1
+
+[node name="price" type="TextureRect" parent="CanvasLayer/Customizing_Character/Abilities/Sedative"]
+margin_left = 29.0
+margin_top = -35.0
+margin_right = 69.0
+texture = ExtResource( 17 )
+expand = true
+stretch_mode = 6
+
+[node name="Label" type="Label" parent="CanvasLayer/Customizing_Character/Abilities/Sedative/price"]
+margin_left = -16.0
+margin_top = 7.0
+margin_right = 4.0
+margin_bottom = 37.0
+custom_fonts/font = SubResource( 1 )
+text = "50"
+align = 1
+
+[node name="Teleport" type="TextureButton" parent="CanvasLayer/Customizing_Character/Abilities"]
+margin_left = 535.0
+margin_top = 262.0
+margin_right = 615.0
+margin_bottom = 341.0
+texture_normal = ExtResource( 15 )
+expand = true
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="CanvasLayer/Customizing_Character/Abilities/Teleport"]
+margin_left = -13.0
+margin_top = 83.0
+margin_right = 94.0
+margin_bottom = 113.0
+custom_fonts/font = SubResource( 1 )
+text = "TELEPORT"
+align = 1
+
+[node name="price" type="TextureRect" parent="CanvasLayer/Customizing_Character/Abilities/Teleport"]
+margin_left = 29.0
+margin_top = -35.0
+margin_right = 69.0
+texture = ExtResource( 17 )
+expand = true
+stretch_mode = 6
+
+[node name="Label" type="Label" parent="CanvasLayer/Customizing_Character/Abilities/Teleport/price"]
+margin_left = -16.0
+margin_top = 7.0
+margin_right = 4.0
+margin_bottom = 37.0
+custom_fonts/font = SubResource( 1 )
+text = "70"
+align = 1
+
+[node name="fivex" type="TextureButton" parent="CanvasLayer/Customizing_Character/Abilities"]
+margin_left = 254.0
+margin_top = 408.0
+margin_right = 334.0
+margin_bottom = 487.0
+texture_normal = ExtResource( 19 )
+expand = true
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="CanvasLayer/Customizing_Character/Abilities/fivex"]
+margin_left = -12.0
+margin_top = 85.0
+margin_right = 95.0
+margin_bottom = 115.0
+custom_fonts/font = SubResource( 1 )
+text = "5x speed"
+align = 1
+
+[node name="price" type="TextureRect" parent="CanvasLayer/Customizing_Character/Abilities/fivex"]
+margin_left = 29.0
+margin_top = -35.0
+margin_right = 69.0
+texture = ExtResource( 17 )
+expand = true
+stretch_mode = 6
+
+[node name="Label" type="Label" parent="CanvasLayer/Customizing_Character/Abilities/fivex/price"]
+margin_left = -16.0
+margin_top = 7.0
+margin_right = 4.0
+margin_bottom = 37.0
+custom_fonts/font = SubResource( 1 )
+text = "20"
+align = 1
+
+[node name="mouse" type="TextureButton" parent="CanvasLayer/Customizing_Character/Abilities"]
+margin_left = 664.0
+margin_top = 264.0
+margin_right = 744.0
+margin_bottom = 343.0
+texture_normal = ExtResource( 13 )
+expand = true
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="CanvasLayer/Customizing_Character/Abilities/mouse"]
+margin_left = -35.0
+margin_top = 82.0
+margin_right = 118.0
+margin_bottom = 112.0
+custom_fonts/font = SubResource( 1 )
+text = "TELEPORT TO MOUSE"
+align = 1
+
+[node name="price" type="TextureRect" parent="CanvasLayer/Customizing_Character/Abilities/mouse"]
+margin_left = 29.0
+margin_top = -35.0
+margin_right = 69.0
+texture = ExtResource( 17 )
+expand = true
+stretch_mode = 6
+
+[node name="Label" type="Label" parent="CanvasLayer/Customizing_Character/Abilities/mouse/price"]
+margin_left = -23.0
+margin_top = 7.0
+margin_right = 7.0
+margin_bottom = 37.0
+custom_fonts/font = SubResource( 1 )
+text = "160"
+align = 1
+
+[node name="Faz_Coins" parent="CanvasLayer/Customizing_Character/Abilities" instance=ExtResource( 9 )]
+position = Vector2( 442, 118 )
+coins = 1431.0
+gold_coins = 286.0
+
+[node name="Abilities2" type="Control" parent="CanvasLayer/Customizing_Character"]
+visible = false
+margin_left = -15.0
+margin_top = -12.0
+margin_right = 979.0
+margin_bottom = 587.0
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/Customizing_Character/Abilities2"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = 815.0
+margin_bottom = 491.0
+color = Color( 0.0392157, 0.0313726, 0.0313726, 0.717647 )
+
+[node name="disable" type="TextureButton" parent="CanvasLayer/Customizing_Character/Abilities2"]
+margin_left = 256.0
+margin_top = 259.0
+margin_right = 336.0
+margin_bottom = 338.0
+texture_normal = SubResource( 8 )
+texture_pressed = SubResource( 8 )
+expand = true
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="CanvasLayer/Customizing_Character/Abilities2/disable"]
+margin_left = -13.0
+margin_top = 83.0
+margin_right = 94.0
+margin_bottom = 113.0
+custom_fonts/font = SubResource( 1 )
+text = "disable"
+align = 1
+
+[node name="binocle" type="TextureButton" parent="CanvasLayer/Customizing_Character/Abilities2"]
+margin_left = 346.0
+margin_top = 260.0
+margin_right = 426.0
+margin_bottom = 339.0
+texture_normal = ExtResource( 27 )
+expand = true
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="CanvasLayer/Customizing_Character/Abilities2/binocle"]
+margin_left = -13.0
+margin_top = 83.0
+margin_right = 94.0
+margin_bottom = 113.0
+custom_fonts/font = SubResource( 1 )
+text = "binoculars"
+align = 1
+
+[node name="price" type="TextureRect" parent="CanvasLayer/Customizing_Character/Abilities2/binocle"]
+margin_left = 29.0
+margin_top = -35.0
+margin_right = 69.0
+texture = ExtResource( 17 )
+expand = true
+stretch_mode = 6
+
+[node name="Label" type="Label" parent="CanvasLayer/Customizing_Character/Abilities2/binocle/price"]
+margin_left = -16.0
+margin_top = 7.0
+margin_right = 4.0
+margin_bottom = 37.0
+custom_fonts/font = SubResource( 1 )
+text = "10"
+align = 1
+
+[node name="guitar" type="TextureButton" parent="CanvasLayer/Customizing_Character/Abilities2"]
+margin_left = 449.0
+margin_top = 260.0
+margin_right = 529.0
+margin_bottom = 339.0
+texture_normal = ExtResource( 26 )
+expand = true
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="CanvasLayer/Customizing_Character/Abilities2/guitar"]
+margin_left = -13.0
+margin_top = 83.0
+margin_right = 94.0
+margin_bottom = 113.0
+custom_fonts/font = SubResource( 1 )
+text = "rock-n-roll"
+align = 1
+
+[node name="price" type="TextureRect" parent="CanvasLayer/Customizing_Character/Abilities2/guitar"]
+margin_left = 29.0
+margin_top = -35.0
+margin_right = 69.0
+texture = ExtResource( 17 )
+expand = true
+stretch_mode = 6
+
+[node name="Label" type="Label" parent="CanvasLayer/Customizing_Character/Abilities2/guitar/price"]
+margin_left = -16.0
+margin_top = 7.0
+margin_right = 4.0
+margin_bottom = 37.0
+custom_fonts/font = SubResource( 1 )
+text = "25"
+align = 1
+
+[node name="halloween" type="TextureButton" parent="CanvasLayer/Customizing_Character/Abilities2"]
+margin_left = 604.0
+margin_top = 265.0
+margin_right = 684.0
+margin_bottom = 344.0
+texture_normal = ExtResource( 28 )
+expand = true
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="CanvasLayer/Customizing_Character/Abilities2/halloween"]
+margin_left = -56.0
+margin_top = 79.0
+margin_right = 152.0
+margin_bottom = 109.0
+custom_fonts/font = SubResource( 1 )
+text = "the Power of Halloween "
+align = 1
+
+[node name="price" type="TextureRect" parent="CanvasLayer/Customizing_Character/Abilities2/halloween"]
+margin_left = 29.0
+margin_top = -35.0
+margin_right = 69.0
+texture = ExtResource( 17 )
+expand = true
+stretch_mode = 6
+
+[node name="Label" type="Label" parent="CanvasLayer/Customizing_Character/Abilities2/halloween/price"]
+margin_left = -23.0
+margin_top = 6.0
+margin_right = 7.0
+margin_bottom = 36.0
+custom_fonts/font = SubResource( 1 )
+text = "170"
+align = 1
+
+[node name="gods_gift" type="TextureButton" parent="CanvasLayer/Customizing_Character/Abilities2"]
+margin_left = 766.0
+margin_top = 262.0
+margin_right = 846.0
+margin_bottom = 341.0
+texture_normal = ExtResource( 29 )
+expand = true
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="CanvasLayer/Customizing_Character/Abilities2/gods_gift"]
+margin_left = -35.0
+margin_top = 82.0
+margin_right = 118.0
+margin_bottom = 112.0
+custom_fonts/font = SubResource( 1 )
+text = "GOD'S GIFT"
+align = 1
+
+[node name="price" type="TextureRect" parent="CanvasLayer/Customizing_Character/Abilities2/gods_gift"]
+margin_left = 29.0
+margin_top = -35.0
+margin_right = 69.0
+texture = ExtResource( 17 )
+expand = true
+stretch_mode = 6
+
+[node name="Label" type="Label" parent="CanvasLayer/Customizing_Character/Abilities2/gods_gift/price"]
+margin_left = -23.0
+margin_top = 7.0
+margin_right = 7.0
+margin_bottom = 37.0
+custom_fonts/font = SubResource( 1 )
+text = "250"
+align = 1
+
+[node name="Faz_Coins" parent="CanvasLayer/Customizing_Character/Abilities2" instance=ExtResource( 9 )]
+position = Vector2( 442, 118 )
+coins = 1431.0
+gold_coins = 286.0
+
+[node name="eye2_color" type="ColorPicker" parent="CanvasLayer/Customizing_Character"]
+visible = false
+margin_left = 186.0
+margin_top = 99.0
+margin_right = 487.0
+margin_bottom = 561.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="eye_color" type="ColorPicker" parent="CanvasLayer/Customizing_Character"]
+visible = false
+margin_left = 181.0
+margin_top = 101.0
+margin_right = 482.0
+margin_bottom = 563.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="head_color" type="ColorPicker" parent="CanvasLayer/Customizing_Character"]
+visible = false
+margin_left = 180.0
+margin_top = 99.0
+margin_right = 481.0
+margin_bottom = 561.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="body_color" type="ColorPicker" parent="CanvasLayer/Customizing_Character"]
+visible = false
+margin_left = 190.0
+margin_top = 103.0
+margin_right = 491.0
+margin_bottom = 565.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="legs_color" type="ColorPicker" parent="CanvasLayer/Customizing_Character"]
+visible = false
+margin_left = 194.0
+margin_top = 107.0
+margin_right = 495.0
+margin_bottom = 569.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="hat_color" type="ColorPicker" parent="CanvasLayer/Customizing_Character"]
+visible = false
+margin_left = 180.0
+margin_top = 112.0
+margin_right = 481.0
+margin_bottom = 574.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="CanvasLayer/Customizing_Character"]
+visible = false
+margin_left = 99.0
+margin_top = 54.0
+margin_right = 144.0
+margin_bottom = 68.0
+text = "COLOR"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BACK" type="Button" parent="CanvasLayer/Customizing_Character"]
+margin_left = 899.0
+margin_top = 34.0
+margin_right = 984.0
+margin_bottom = 69.0
+theme = ExtResource( 3 )
+custom_fonts/font = ExtResource( 4 )
+text = "BACK"
+flat = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Customizing_Character"]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = 831.0
+margin_top = 57.0
+margin_right = 984.0
+margin_bottom = 566.0
+alignment = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="EYES_COLOUR" type="Button" parent="CanvasLayer/Customizing_Character/VBoxContainer"]
+margin_top = 238.0
+margin_right = 153.0
+margin_bottom = 259.0
+theme = ExtResource( 3 )
+custom_fonts/font = ExtResource( 4 )
+text = "EYES  COLOUR"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="EYES2_COLOUR" type="Button" parent="CanvasLayer/Customizing_Character/VBoxContainer"]
+margin_top = 263.0
+margin_right = 153.0
+margin_bottom = 284.0
+theme = ExtResource( 3 )
+custom_fonts/font = ExtResource( 4 )
+text = "EYES 2 COLOUR"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HEAD_COLOUR" type="Button" parent="CanvasLayer/Customizing_Character/VBoxContainer"]
+margin_top = 288.0
+margin_right = 153.0
+margin_bottom = 309.0
+theme = ExtResource( 3 )
+custom_fonts/font = ExtResource( 4 )
+text = "HEAD COLOUR"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BODY_COLOUR" type="Button" parent="CanvasLayer/Customizing_Character/VBoxContainer"]
+margin_top = 313.0
+margin_right = 153.0
+margin_bottom = 334.0
+theme = ExtResource( 3 )
+custom_fonts/font = ExtResource( 4 )
+text = "BODY COLOUR"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LEGS_COLOUR" type="Button" parent="CanvasLayer/Customizing_Character/VBoxContainer"]
+margin_top = 338.0
+margin_right = 153.0
+margin_bottom = 359.0
+theme = ExtResource( 3 )
+custom_fonts/font = ExtResource( 4 )
+text = "LEGS COLOUR"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HAT_COLOUR" type="Button" parent="CanvasLayer/Customizing_Character/VBoxContainer"]
+margin_top = 363.0
+margin_right = 153.0
+margin_bottom = 384.0
+theme = ExtResource( 3 )
+custom_fonts/font = ExtResource( 4 )
+text = "HAT COLOUR"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="EXTRA_ABILITY" type="Button" parent="CanvasLayer/Customizing_Character/VBoxContainer"]
+margin_top = 388.0
+margin_right = 153.0
+margin_bottom = 409.0
+theme = ExtResource( 3 )
+custom_fonts/font = ExtResource( 4 )
+text = "EXTRA ABILITY"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ABILITY" type="Button" parent="CanvasLayer/Customizing_Character/VBoxContainer"]
+margin_top = 413.0
+margin_right = 153.0
+margin_bottom = 434.0
+theme = ExtResource( 3 )
+custom_fonts/font = ExtResource( 4 )
+text = "ABILITY"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RANDOM" type="Button" parent="CanvasLayer/Customizing_Character/VBoxContainer"]
+margin_top = 438.0
+margin_right = 153.0
+margin_bottom = 459.0
+theme = ExtResource( 3 )
+custom_fonts/font = ExtResource( 4 )
+text = "RANDOM"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SAVE" type="Button" parent="CanvasLayer/Customizing_Character/VBoxContainer"]
+margin_top = 463.0
+margin_right = 153.0
+margin_bottom = 484.0
+theme = ExtResource( 3 )
+custom_fonts/font = ExtResource( 4 )
+text = "SAVE"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ERASE" type="Button" parent="CanvasLayer/Customizing_Character/VBoxContainer"]
+margin_top = 488.0
+margin_right = 153.0
+margin_bottom = 509.0
+theme = ExtResource( 3 )
+custom_fonts/font = ExtResource( 4 )
+text = "ERASE CHARACTER"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="CanvasLayer/Customizing_Character"]
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_left = 28.0
+margin_right = 289.0
+margin_bottom = 530.0
+mouse_filter = 2
+alignment = 2
+
+[node name="LEGS" type="Label" parent="CanvasLayer/Customizing_Character/VBoxContainer2"]
+margin_top = 409.0
+margin_right = 261.0
+margin_bottom = 430.0
+custom_fonts/font = ExtResource( 4 )
+text = "LEGS"
+
+[node name="MINUS_LEGS" type="Button" parent="CanvasLayer/Customizing_Character/VBoxContainer2/LEGS"]
+margin_left = 50.0
+margin_top = -3.0
+margin_right = 69.0
+margin_bottom = 18.0
+theme = ExtResource( 3 )
+custom_fonts/font = ExtResource( 4 )
+text = "-"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PLUS_LEGS" type="Button" parent="CanvasLayer/Customizing_Character/VBoxContainer2/LEGS"]
+margin_left = 92.0
+margin_top = -3.0
+margin_right = 111.0
+margin_bottom = 18.0
+theme = ExtResource( 3 )
+custom_fonts/font = ExtResource( 4 )
+text = "+"
+
+[node name="TYPE" type="Label" parent="CanvasLayer/Customizing_Character/VBoxContainer2/LEGS"]
+margin_left = 71.0
+margin_top = -2.0
+margin_right = 91.0
+margin_bottom = 19.0
+custom_fonts/font = ExtResource( 4 )
+text = "0"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BODY" type="Label" parent="CanvasLayer/Customizing_Character/VBoxContainer2"]
+margin_top = 434.0
+margin_right = 261.0
+margin_bottom = 455.0
+custom_fonts/font = ExtResource( 4 )
+text = "BODY"
+
+[node name="MINUS_BODY" type="Button" parent="CanvasLayer/Customizing_Character/VBoxContainer2/BODY"]
+margin_left = 50.0
+margin_top = -3.0
+margin_right = 69.0
+margin_bottom = 18.0
+theme = ExtResource( 3 )
+custom_fonts/font = ExtResource( 4 )
+text = "-"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PLUS_BODY" type="Button" parent="CanvasLayer/Customizing_Character/VBoxContainer2/BODY"]
+margin_left = 92.0
+margin_top = -3.0
+margin_right = 111.0
+margin_bottom = 18.0
+theme = ExtResource( 3 )
+custom_fonts/font = ExtResource( 4 )
+text = "+"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TYPE" type="Label" parent="CanvasLayer/Customizing_Character/VBoxContainer2/BODY"]
+margin_left = 71.0
+margin_top = -2.0
+margin_right = 91.0
+margin_bottom = 19.0
+custom_fonts/font = ExtResource( 4 )
+text = "0"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HEAD" type="Label" parent="CanvasLayer/Customizing_Character/VBoxContainer2"]
+margin_top = 459.0
+margin_right = 261.0
+margin_bottom = 480.0
+custom_fonts/font = ExtResource( 4 )
+text = "HEAD"
+
+[node name="MINUS_HEAD" type="Button" parent="CanvasLayer/Customizing_Character/VBoxContainer2/HEAD"]
+margin_left = 50.0
+margin_top = -3.0
+margin_right = 69.0
+margin_bottom = 18.0
+theme = ExtResource( 3 )
+custom_fonts/font = ExtResource( 4 )
+text = "-"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PLUS_HEAD" type="Button" parent="CanvasLayer/Customizing_Character/VBoxContainer2/HEAD"]
+margin_left = 92.0
+margin_top = -3.0
+margin_right = 111.0
+margin_bottom = 18.0
+theme = ExtResource( 3 )
+custom_fonts/font = ExtResource( 4 )
+text = "+"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TYPE" type="Label" parent="CanvasLayer/Customizing_Character/VBoxContainer2/HEAD"]
+margin_left = 71.0
+margin_top = -2.0
+margin_right = 91.0
+margin_bottom = 19.0
+custom_fonts/font = ExtResource( 4 )
+text = "0"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HAT" type="Label" parent="CanvasLayer/Customizing_Character/VBoxContainer2"]
+margin_top = 484.0
+margin_right = 261.0
+margin_bottom = 505.0
+custom_fonts/font = ExtResource( 4 )
+text = "HAT"
+
+[node name="MINUS_HAT" type="Button" parent="CanvasLayer/Customizing_Character/VBoxContainer2/HAT"]
+margin_left = 50.0
+margin_top = -3.0
+margin_right = 69.0
+margin_bottom = 18.0
+theme = ExtResource( 3 )
+custom_fonts/font = ExtResource( 4 )
+text = "-"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PLUS_HAT" type="Button" parent="CanvasLayer/Customizing_Character/VBoxContainer2/HAT"]
+margin_left = 92.0
+margin_top = -3.0
+margin_right = 111.0
+margin_bottom = 18.0
+theme = ExtResource( 3 )
+custom_fonts/font = ExtResource( 4 )
+text = "+"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TYPE" type="Label" parent="CanvasLayer/Customizing_Character/VBoxContainer2/HAT"]
+margin_left = 71.0
+margin_top = -2.0
+margin_right = 91.0
+margin_bottom = 19.0
+custom_fonts/font = ExtResource( 4 )
+text = "0"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="CanvasLayer/Customizing_Character/VBoxContainer2"]
+margin_top = 509.0
+margin_right = 261.0
+margin_bottom = 530.0
+custom_fonts/font = ExtResource( 4 )
+text = "ZOOM"
+
+[node name="HSlider" type="HSlider" parent="CanvasLayer/Customizing_Character/VBoxContainer2/Label"]
+margin_left = 56.0
+margin_top = 1.0
+margin_right = 165.0
+margin_bottom = 17.0
+max_value = 25.0
+value = 2.0
+
+[node name="ARE_U_SURE" type="AcceptDialog" parent="CanvasLayer/Customizing_Character"]
+margin_right = 358.0
+margin_bottom = 58.0
+window_title = "ARE YOU SURE?"
+
+[node name="Sound" type="AudioStreamPlayer" parent="CanvasLayer/Customizing_Character"]
+stream = ExtResource( 20 )
+
+[node name="Buying" type="AudioStreamPlayer" parent="CanvasLayer/Customizing_Character/Sound"]
+stream = ExtResource( 21 )
+
+[node name="LOGO" type="Label" parent="CanvasLayer/Customizing_Character"]
+margin_left = -80.0
+margin_top = 34.0
+margin_right = 489.0
+margin_bottom = 117.0
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 2 )
+text = "FNAF SANDBOX"
+align = 1
+
+[node name="ColorRect2" type="ColorRect" parent="CanvasLayer"]
+material = ExtResource( 10 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="FADE" type="ColorRect" parent="CanvasLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+color = Color( 0, 0, 0, 0 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="fade" type="AnimationPlayer" parent="CanvasLayer/FADE"]
+autoplay = "fade"
+anims/RESET = SubResource( 9 )
+anims/fade = SubResource( 10 )
+
+[node name="BG" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="CanvasLayer" type="CanvasLayer" parent="BG"]
+script = ExtResource( 7 )
+
+[node name="BGS" parent="BG/CanvasLayer" instance=ExtResource( 5 )]
+visible = false
+
+[node name="Faz_Coins" parent="BG/CanvasLayer" instance=ExtResource( 9 )]
+visible = false
+coins = 1431.0
+gold_coins = 286.0
+
+[node name="CoolestBG" type="TextureRect" parent="BG"]
+modulate = Color( 1, 1, 1, 0.419608 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 8 )
+expand = true
+stretch_mode = 7
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="BG"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.0470588, 0.054902, 0.0901961, 0.792157 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="BG"]
+position = Vector2( 589, 653 )
+amount = 43
+lifetime = 5.0
+explosiveness = 0.2
+randomness = 0.07
+lifetime_randomness = 0.07
+texture = ExtResource( 23 )
+emission_shape = 2
+emission_rect_extents = Vector2( 800, 1 )
+spread = 13.88
+gravity = Vector2( 0, -98 )
+angular_velocity = 0.98
+angular_velocity_random = 0.2
+orbit_velocity = 0.06
+orbit_velocity_random = 0.16
+radial_accel = 1.38
+scale_amount = 0.27
+scale_amount_random = 0.03
+scale_amount_curve = SubResource( 3 )
+color = Color( 0.811765, 0.819608, 1, 0.305882 )
+color_ramp = SubResource( 4 )
+anim_speed = 4.74
+anim_speed_random = 0.1
+
+[node name="TextureRect" type="TextureRect" parent="BG"]
+modulate = Color( 0.733333, 0.74902, 1, 0.211765 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -338.0
+margin_top = 81.0
+margin_right = 317.0
+margin_bottom = 303.0
+texture = ExtResource( 23 )
+expand = true
+
+[node name="TextureRect2" type="TextureRect" parent="BG"]
+modulate = Color( 1, 0.843137, 0.686275, 0.14902 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -690.0
+margin_top = -294.0
+margin_right = -35.0
+margin_bottom = -72.0
+texture = ExtResource( 23 )
+expand = true
+
+[node name="ColorRect2" type="ColorRect" parent="BG"]
+visible = false
+material = SubResource( 7 )
+margin_left = -230.0
+margin_top = -15.0
+margin_right = 1502.0
+margin_bottom = 805.0
+
+[node name="BG_Music" type="AudioStreamPlayer" parent="BG"]
+stream = ExtResource( 11 )
+autoplay = true
+
+[node name="TextureRect3" type="TextureRect" parent="BG"]
+visible = false
+material = ExtResource( 25 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 24 )
+expand = true
+stretch_mode = 1
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( 5 )
+
+[connection signal="pressed" from="CanvasLayer/Customizing_Character/Abilities/Speed" to="CanvasLayer" method="_on_Speed_pressed"]
+[connection signal="pressed" from="CanvasLayer/Customizing_Character/Abilities/Speed2" to="CanvasLayer" method="_on_Speed2_pressed"]
+[connection signal="pressed" from="CanvasLayer/Customizing_Character/Abilities/Sedative" to="CanvasLayer" method="_on_Sedative_pressed"]
+[connection signal="pressed" from="CanvasLayer/Customizing_Character/Abilities/Teleport" to="CanvasLayer" method="_on_Teleport_pressed"]
+[connection signal="pressed" from="CanvasLayer/Customizing_Character/Abilities/fivex" to="CanvasLayer" method="_on_5x_pressed"]
+[connection signal="pressed" from="CanvasLayer/Customizing_Character/Abilities/mouse" to="CanvasLayer" method="_on_mouse_pressed"]
+[connection signal="pressed" from="CanvasLayer/Customizing_Character/Abilities2/disable" to="CanvasLayer" method="_on_disable_pressed"]
+[connection signal="pressed" from="CanvasLayer/Customizing_Character/Abilities2/binocle" to="CanvasLayer" method="_on_binocle_pressed"]
+[connection signal="pressed" from="CanvasLayer/Customizing_Character/Abilities2/guitar" to="CanvasLayer" method="_on_guitar_pressed"]
+[connection signal="pressed" from="CanvasLayer/Customizing_Character/Abilities2/halloween" to="CanvasLayer" method="_on_halloween_pressed"]
+[connection signal="pressed" from="CanvasLayer/Customizing_Character/Abilities2/gods_gift" to="CanvasLayer" method="_on_gods_gift_pressed"]
+[connection signal="pressed" from="CanvasLayer/Customizing_Character/BACK" to="CanvasLayer" method="_on_BACK_pressed"]
+[connection signal="pressed" from="CanvasLayer/Customizing_Character/VBoxContainer/EYES_COLOUR" to="CanvasLayer" method="_on_EYES_COLOUR_pressed"]
+[connection signal="pressed" from="CanvasLayer/Customizing_Character/VBoxContainer/EYES2_COLOUR" to="CanvasLayer" method="_on_EYES2_COLOUR_pressed"]
+[connection signal="pressed" from="CanvasLayer/Customizing_Character/VBoxContainer/HEAD_COLOUR" to="CanvasLayer" method="_on_HEAD_COLOUR_pressed"]
+[connection signal="pressed" from="CanvasLayer/Customizing_Character/VBoxContainer/BODY_COLOUR" to="CanvasLayer" method="_on_BODY_COLOUR_pressed"]
+[connection signal="pressed" from="CanvasLayer/Customizing_Character/VBoxContainer/LEGS_COLOUR" to="CanvasLayer" method="_on_LEGS_COLOUR_pressed"]
+[connection signal="pressed" from="CanvasLayer/Customizing_Character/VBoxContainer/HAT_COLOUR" to="CanvasLayer" method="_on_HAT_COLOUR_pressed"]
+[connection signal="pressed" from="CanvasLayer/Customizing_Character/VBoxContainer/EXTRA_ABILITY" to="CanvasLayer" method="_on_EXTRA_ABILITY_pressed"]
+[connection signal="pressed" from="CanvasLayer/Customizing_Character/VBoxContainer/ABILITY" to="CanvasLayer" method="_on_ABILITY_pressed"]
+[connection signal="pressed" from="CanvasLayer/Customizing_Character/VBoxContainer/RANDOM" to="CanvasLayer" method="_on_RANDOM_pressed"]
+[connection signal="pressed" from="CanvasLayer/Customizing_Character/VBoxContainer/SAVE" to="CanvasLayer" method="_on_SAVE_pressed"]
+[connection signal="pressed" from="CanvasLayer/Customizing_Character/VBoxContainer/ERASE" to="CanvasLayer" method="_on_ERASE_pressed"]
+[connection signal="pressed" from="CanvasLayer/Customizing_Character/VBoxContainer2/LEGS/MINUS_LEGS" to="CanvasLayer" method="_on_MINUS_LEGS_pressed"]
+[connection signal="pressed" from="CanvasLayer/Customizing_Character/VBoxContainer2/LEGS/PLUS_LEGS" to="CanvasLayer" method="_on_PLUS_LEGS_pressed"]
+[connection signal="pressed" from="CanvasLayer/Customizing_Character/VBoxContainer2/BODY/MINUS_BODY" to="CanvasLayer" method="_on_MINUS_BODY_pressed"]
+[connection signal="pressed" from="CanvasLayer/Customizing_Character/VBoxContainer2/BODY/PLUS_BODY" to="CanvasLayer" method="_on_PLUS_BODY_pressed"]
+[connection signal="pressed" from="CanvasLayer/Customizing_Character/VBoxContainer2/HEAD/MINUS_HEAD" to="CanvasLayer" method="_on_MINUS_HEAD_pressed"]
+[connection signal="pressed" from="CanvasLayer/Customizing_Character/VBoxContainer2/HEAD/PLUS_HEAD" to="CanvasLayer" method="_on_PLUS_HEAD_pressed"]
+[connection signal="pressed" from="CanvasLayer/Customizing_Character/VBoxContainer2/HAT/MINUS_HAT" to="CanvasLayer" method="_on_MINUS_HAT_pressed"]
+[connection signal="pressed" from="CanvasLayer/Customizing_Character/VBoxContainer2/HAT/PLUS_HAT" to="CanvasLayer" method="_on_PLUS_HAT_pressed"]
+[connection signal="confirmed" from="CanvasLayer/Customizing_Character/ARE_U_SURE" to="CanvasLayer" method="_on_ARE_U_SURE_confirmed"]

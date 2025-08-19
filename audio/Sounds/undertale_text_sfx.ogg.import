@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/undertale_text_sfx.ogg-eded6a4285d43e76a3208b423457982a.oggstr"
+
+[deps]
+
+source_file="res://audio/Sounds/undertale_text_sfx.ogg"
+dest_files=[ "res://.import/undertale_text_sfx.ogg-eded6a4285d43e76a3208b423457982a.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

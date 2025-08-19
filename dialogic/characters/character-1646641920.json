@@ -1,0 +1,21 @@
+{
+	"color": "#ffffffff",
+	"description": "",
+	"display_name": "Comic Sans",
+	"display_name_bool": false,
+	"id": "character-1646641920.json",
+	"mirror_portraits": false,
+	"name": "Sans",
+	"nickname": "Font the skeleton",
+	"nickname_bool": false,
+	"offset_x": 0,
+	"offset_y": 0,
+	"portraits": [
+		{
+			"name": "Default",
+			"path": ""
+		}
+	],
+	"scale": 100,
+	"theme": "theme-1646641976.cfg"
+}

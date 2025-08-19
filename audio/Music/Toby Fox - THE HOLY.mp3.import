@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Toby Fox - THE HOLY.mp3-8f9a2f751fe31df464f37a4d0a7c2169.mp3str"
+
+[deps]
+
+source_file="res://audio/Music/Toby Fox - THE HOLY.mp3"
+dest_files=[ "res://.import/Toby Fox - THE HOLY.mp3-8f9a2f751fe31df464f37a4d0a7c2169.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

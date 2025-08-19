@@ -1,0 +1,398 @@
+[gd_scene load_steps=22 format=2]
+
+[ext_resource path="res://scenes/Animatronic.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/Maps/test.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Sprites/npcs/genos.png" type="Texture" id=3]
+[ext_resource path="res://Sprites/npcs/drayn-sprites.png" type="Texture" id=4]
+[ext_resource path="res://Fonts/F77 Minecraft.ttf" type="DynamicFontData" id=5]
+[ext_resource path="res://Fonts/bebas.tres" type="DynamicFont" id=6]
+[ext_resource path="res://scripts/Misc/TestMap.gd" type="Script" id=7]
+[ext_resource path="res://Sprites/light.png" type="Texture" id=8]
+[ext_resource path="res://Sprites/sparkle.png" type="Texture" id=9]
+[ext_resource path="res://shaders/vignette.tres" type="Material" id=10]
+[ext_resource path="res://Sprites/Spritesheets/PC Computer - Deltarune - Sans.png" type="Texture" id=11]
+[ext_resource path="res://scenes/Misc/Triggers.tscn" type="PackedScene" id=12]
+
+[sub_resource type="DynamicFont" id=7]
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 5 )
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 4 )
+region = Rect2( 10, 5, 58, 32 )
+
+[sub_resource type="Animation" id=4]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0.7, 0.7 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("../Z:rect_position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 624, 257 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("../Z2:rect_position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = false
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 635, 253 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("../Z2:margin_left")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = false
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 624.0 ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "sleepin"
+length = 5.142
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 2.5 ),
+"transitions": PoolRealArray( 0.615572, 0.466516 ),
+"update": 0,
+"values": [ Vector2( 0.7, 0.7 ), Vector2( 0.7, 0.634376 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("../Z:rect_position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = false
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1.5, 2.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 624, 257 ), Vector2( 631, 260 ), Vector2( 635, 253 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("../Z2:rect_position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = false
+tracks/2/keys = {
+"times": PoolRealArray( 0, 1.5, 2.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 635, 253 ), Vector2( 624, 252 ), Vector2( 624, 257 ) ]
+}
+
+[sub_resource type="RectangleShape2D" id=12]
+extents = Vector2( 57.8571, 58.7757 )
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 3 )
+region = Rect2( 11, 36, 31, 54 )
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 4 )
+region = Rect2( 79, 4, 37, 58 )
+
+[sub_resource type="AtlasTexture" id=15]
+atlas = ExtResource( 11 )
+region = Rect2( 2, 15, 23, 30 )
+
+[sub_resource type="RectangleShape2D" id=14]
+extents = Vector2( 4.5, 12.125 )
+
+[node name="TestMap" type="Node2D"]
+script = ExtResource( 7 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -92
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 1 )
+
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="press_enter" type="Label" parent="HUD"]
+visible = false
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -114.0
+margin_top = -106.0
+margin_right = -6.0
+margin_bottom = -78.0
+custom_fonts/font = ExtResource( 6 )
+text = "PRESS ENTER"
+
+[node name="tile_id" type="Label" parent="HUD"]
+visible = false
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -114.0
+margin_top = -308.0
+margin_right = -6.0
+margin_bottom = -280.0
+custom_fonts/font = ExtResource( 6 )
+text = "TILE ID"
+
+[node name="ColorRect" type="ColorRect" parent="HUD"]
+material = ExtResource( 10 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Triggers" parent="." instance=ExtResource( 12 )]
+
+[node name="Level" parent="." instance=ExtResource( 2 )]
+
+[node name="Z2" type="Label" parent="."]
+margin_left = 623.0
+margin_top = 377.0
+margin_right = 2747.0
+margin_bottom = 393.005
+rect_scale = Vector2( 0.544861, 0.576468 )
+custom_fonts/font = SubResource( 7 )
+text = "Z"
+
+[node name="Z" type="Label" parent="."]
+margin_left = 624.0
+margin_top = 257.0
+margin_right = 636.0
+margin_bottom = 273.0
+rect_scale = Vector2( 0.544861, 0.576468 )
+custom_fonts/font = SubResource( 7 )
+text = "Z"
+
+[node name="Light2D5" type="Light2D" parent="."]
+position = Vector2( 383, 480 )
+scale = Vector2( 0.1506, 0.129092 )
+texture = ExtResource( 8 )
+texture_scale = 1.14
+color = Color( 0, 1, 0.694118, 1 )
+energy = 1.05
+range_height = -3.1
+shadow_color = Color( 0, 0, 0, 1 )
+shadow_filter = 1
+
+[node name="Light2D8" type="Light2D" parent="."]
+position = Vector2( 273, 980 )
+scale = Vector2( 0.1506, 0.129092 )
+texture = ExtResource( 8 )
+texture_scale = 1.14
+color = Color( 0, 1, 0.694118, 1 )
+energy = 1.05
+range_height = -3.1
+shadow_color = Color( 0, 0, 0, 1 )
+shadow_filter = 1
+
+[node name="Light2D9" type="Light2D" parent="."]
+position = Vector2( 275, 1366 )
+scale = Vector2( 0.1506, 0.129092 )
+texture = ExtResource( 8 )
+texture_scale = 1.14
+color = Color( 0, 1, 0.694118, 1 )
+energy = 1.05
+range_height = -3.1
+shadow_color = Color( 0, 0, 0, 1 )
+shadow_filter = 1
+
+[node name="Light2D6" type="Light2D" parent="."]
+position = Vector2( 53.2516, 1203.74 )
+scale = Vector2( 0.379358, 0.479059 )
+texture = ExtResource( 8 )
+texture_scale = 2.73
+color = Color( 0.635294, 0.501961, 0.384314, 1 )
+energy = 1.22
+range_height = -3.1
+shadow_color = Color( 0, 0, 0, 1 )
+shadow_filter = 1
+
+[node name="Light2D7" type="Light2D" parent="."]
+position = Vector2( 1097.25, 1211.35 )
+scale = Vector2( 0.379358, 0.479059 )
+texture = ExtResource( 8 )
+texture_scale = 2.73
+color = Color( 0.635294, 0.501961, 0.384314, 1 )
+energy = 1.22
+range_height = -3.1
+shadow_color = Color( 0, 0, 0, 1 )
+shadow_filter = 1
+
+[node name="drwayn_sleepin" type="Sprite" parent="."]
+position = Vector2( 618.5, 413.1 )
+scale = Vector2( 0.7, 0.7 )
+texture = SubResource( 1 )
+offset = Vector2( -1.42847, -15.5714 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="drwayn_sleepin"]
+autoplay = "sleepin"
+anims/RESET = SubResource( 4 )
+anims/sleepin = SubResource( 5 )
+
+[node name="Area2D" type="Area2D" parent="drwayn_sleepin"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="drwayn_sleepin/Area2D"]
+position = Vector2( -3.57141, 5.71429 )
+scale = Vector2( 0.999999, 0.999999 )
+shape = SubResource( 12 )
+
+[node name="gena" type="Sprite" parent="."]
+position = Vector2( 370.5, 479.1 )
+texture = SubResource( 2 )
+
+[node name="Area2D2" type="Area2D" parent="gena"]
+position = Vector2( 3.05176e-05, -3 )
+scale = Vector2( 0.7, 0.7 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="gena/Area2D2"]
+position = Vector2( 0, 8.57141 )
+scale = Vector2( 0.999999, 0.999999 )
+shape = SubResource( 12 )
+
+[node name="gena2" type="Sprite" parent="."]
+position = Vector2( 273, 982 )
+texture = SubResource( 2 )
+
+[node name="Area2D6" type="Area2D" parent="gena2"]
+position = Vector2( 3.05176e-05, -3 )
+scale = Vector2( 0.7, 0.7 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="gena2/Area2D6"]
+position = Vector2( 0, 8.57141 )
+scale = Vector2( 0.999999, 0.999999 )
+shape = SubResource( 12 )
+
+[node name="gena3" type="Sprite" parent="."]
+position = Vector2( 276, 1366 )
+texture = SubResource( 2 )
+
+[node name="Area2D7" type="Area2D" parent="gena3"]
+position = Vector2( 3.05176e-05, -3 )
+scale = Vector2( 0.7, 0.7 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="gena3/Area2D7"]
+position = Vector2( 0, 8.57141 )
+scale = Vector2( 0.999999, 0.999999 )
+shape = SubResource( 12 )
+
+[node name="drwayn" type="Sprite" parent="."]
+position = Vector2( 280, 1536 )
+scale = Vector2( 0.7, 0.7 )
+texture = SubResource( 6 )
+region_rect = Rect2( 10, 5, 58, 32 )
+
+[node name="Area2D3" type="Area2D" parent="drwayn"]
+position = Vector2( -1.42856, -1.42859 )
+scale = Vector2( 0.7, 0.7 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="drwayn/Area2D3"]
+position = Vector2( -6.10352e-05, 14.2859 )
+scale = Vector2( 0.999999, 0.999999 )
+shape = SubResource( 12 )
+
+[node name="sans" type="Sprite" parent="."]
+position = Vector2( 25, 775 )
+texture = SubResource( 15 )
+offset = Vector2( 248, 0 )
+
+[node name="Area2D4" type="Area2D" parent="sans"]
+position = Vector2( 248, -6 )
+scale = Vector2( 0.7, 0.7 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="sans/Area2D4"]
+position = Vector2( 0, 8.57141 )
+scale = Vector2( 0.999999, 0.999999 )
+shape = SubResource( 12 )
+
+[node name="sans2" type="Sprite" parent="."]
+position = Vector2( 25, 1193 )
+texture = SubResource( 15 )
+offset = Vector2( 248, 0 )
+
+[node name="Area2D5" type="Area2D" parent="sans2"]
+position = Vector2( 248, -6 )
+scale = Vector2( 0.7, 0.7 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="sans2/Area2D5"]
+position = Vector2( 0, 8.57141 )
+scale = Vector2( 0.999999, 0.999999 )
+shape = SubResource( 12 )
+
+[node name="Animatronic" parent="." instance=ExtResource( 1 )]
+position = Vector2( 529, 600 )
+speed = 60
+
+[node name="Area2D" type="Area2D" parent="Animatronic"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Animatronic/Area2D"]
+position = Vector2( 1, 2.125 )
+shape = SubResource( 14 )
+
+[node name="Light2D4" type="Light2D" parent="Animatronic"]
+position = Vector2( 1, 2 )
+scale = Vector2( 0.0753002, 0.0645459 )
+texture = ExtResource( 9 )
+texture_scale = 18.52
+color = Color( 0.839216, 0.796078, 1, 1 )
+energy = 1.1
+range_height = -3.1
+shadow_color = Color( 0, 0, 0, 1 )
+shadow_filter = 1
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color( 0.0941176, 0.0705882, 0.317647, 1 )
+
+[connection signal="area_entered" from="drwayn_sleepin/Area2D" to="." method="_on_Area2D_area_entered"]
+[connection signal="area_exited" from="drwayn_sleepin/Area2D" to="." method="_on_Area2D_area_exited"]
+[connection signal="area_entered" from="gena/Area2D2" to="." method="_on_Area2D2_area_entered"]
+[connection signal="area_exited" from="gena/Area2D2" to="." method="_on_Area2D2_area_exited"]
+[connection signal="area_entered" from="gena2/Area2D6" to="." method="_on_Area2D6_area_entered"]
+[connection signal="area_exited" from="gena2/Area2D6" to="." method="_on_Area2D2_area_exited"]
+[connection signal="area_entered" from="gena3/Area2D7" to="." method="_on_Area2D7_area_entered"]
+[connection signal="area_exited" from="gena3/Area2D7" to="." method="_on_Area2D2_area_exited"]
+[connection signal="area_entered" from="drwayn/Area2D3" to="." method="_on_Area2D3_area_entered"]
+[connection signal="area_exited" from="drwayn/Area2D3" to="." method="_on_Area2D2_area_exited"]
+[connection signal="area_entered" from="sans/Area2D4" to="." method="_on_Area2D4_area_entered"]
+[connection signal="area_exited" from="sans/Area2D4" to="." method="_on_Area2D2_area_exited"]
+[connection signal="area_entered" from="sans2/Area2D5" to="." method="_on_Area2D5_area_entered"]
+[connection signal="area_exited" from="sans2/Area2D5" to="." method="_on_Area2D2_area_exited"]

@@ -1,0 +1,21 @@
+{
+	"color": "#ff00ff1c",
+	"description": "",
+	"display_name": "Genos",
+	"display_name_bool": false,
+	"id": "character-1646588279.json",
+	"mirror_portraits": false,
+	"name": "Genos",
+	"nickname": "",
+	"nickname_bool": false,
+	"offset_x": 100,
+	"offset_y": -193,
+	"portraits": [
+		{
+			"name": "Default",
+			"path": ""
+		}
+	],
+	"scale": 226,
+	"theme": "default-theme.cfg"
+}

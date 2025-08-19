@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Drag Me to the Crusher.mp3-e07918d6d18968da22bc2bb319dd01bd.mp3str"
+
+[deps]
+
+source_file="res://audio/Music/Drag Me to the Crusher.mp3"
+dest_files=[ "res://.import/Drag Me to the Crusher.mp3-e07918d6d18968da22bc2bb319dd01bd.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

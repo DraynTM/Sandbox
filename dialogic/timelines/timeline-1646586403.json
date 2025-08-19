@@ -1,0 +1,81 @@
+{
+	"events": [
+		{
+			"character": "character-1646586225.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "It's a little fox cub, and it looks like he's sleeping."
+		},
+		{
+			"character": "character-1646586225.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "It looks like he has a name."
+		},
+		{
+			"character": "character-1646586225.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "\"Drayn\""
+		},
+		{
+			"character": "character-1646586225.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "This name seems familiar to you."
+		},
+		{
+			"character": "character-1646586225.json",
+			"event_id": "dialogic_010",
+			"options": [
+
+			],
+			"portrait": "",
+			"question": "Wake him up?"
+		},
+		{
+			"choice": "Yes",
+			"condition": "",
+			"definition": "",
+			"event_id": "dialogic_011",
+			"value": ""
+		},
+		{
+			"character": "character-1646586225.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Some unknown force did not allow you to do this."
+		},
+		{
+			"choice": "NO NO NO NO NO",
+			"condition": "",
+			"definition": "",
+			"event_id": "dialogic_011",
+			"value": ""
+		},
+		{
+			"character": "character-1646586225.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "You hesitate to wake him up."
+		},
+		{
+			"event_id": "dialogic_013"
+		},
+		{
+			"character": "character-1646586225.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "A horrible chill goes down your spine..."
+		},
+		{
+			"event_id": "dialogic_022",
+			"transition_duration": 1
+		}
+	],
+	"metadata": {
+		"dialogic-version": "1.4.1",
+		"file": "timeline-1646586403.json",
+		"name": "Drayn_Sleepin"
+	}
+}

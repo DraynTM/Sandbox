@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/The Joy Of Creation Collection Track 14 - Ambiance (TJOC SM) [Living Room].mp3-7c2f1f04900e8b93e8ede7387814add0.mp3str"
+
+[deps]
+
+source_file="res://audio/Music/The Joy Of Creation Collection Track 14 - Ambiance (TJOC SM) [Living Room].mp3"
+dest_files=[ "res://.import/The Joy Of Creation Collection Track 14 - Ambiance (TJOC SM) [Living Room].mp3-7c2f1f04900e8b93e8ede7387814add0.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

@@ -1,0 +1,130 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://scenes/Misc/загруженное.svg" type="Texture" id=1]
+[ext_resource path="res://Menu.tres" type="Theme" id=2]
+[ext_resource path="res://Fonts/MainFont.tres" type="DynamicFont" id=3]
+[ext_resource path="res://Fonts/NicholsonGothicRegular.otf" type="DynamicFontData" id=4]
+[ext_resource path="res://scripts/GameJolt_API.gd" type="Script" id=5]
+
+[sub_resource type="DynamicFont" id=1]
+size = 25
+use_filter = true
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 27
+use_filter = true
+font_data = ExtResource( 4 )
+
+[sub_resource type="Environment" id=3]
+background_mode = 4
+glow_enabled = true
+glow_intensity = 0.13
+glow_strength = 1.49
+glow_blend_mode = 1
+
+[node name="GameJolt_API" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 5 )
+
+[node name="bg" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.0470588, 0, 0.0509804, 1 )
+
+[node name="GJ_logo" type="TextureRect" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -194.0
+margin_top = -162.0
+margin_right = 197.0
+margin_bottom = -68.0
+texture = ExtResource( 1 )
+stretch_mode = 6
+
+[node name="UN" type="Label" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -283.0
+margin_top = -26.0
+margin_right = -139.0
+margin_bottom = 2.0
+custom_fonts/font = SubResource( 1 )
+text = "USER NAME:"
+align = 2
+
+[node name="LineEdit" type="LineEdit" parent="UN"]
+margin_left = 144.0
+margin_right = 480.0
+margin_bottom = 24.0
+theme = ExtResource( 2 )
+custom_fonts/font = ExtResource( 3 )
+align = 1
+placeholder_text = "GAMEJOLT USERNAME WITHOUT @"
+
+[node name="UN2" type="Label" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -340.0
+margin_top = 2.0
+margin_right = -139.0
+margin_bottom = 30.0
+custom_fonts/font = SubResource( 1 )
+text = "USER TOKEN:"
+align = 2
+
+[node name="LineEdit" type="LineEdit" parent="UN2"]
+margin_left = 201.0
+margin_right = 537.0
+margin_bottom = 24.0
+theme = ExtResource( 2 )
+custom_fonts/font = ExtResource( 3 )
+align = 1
+secret = true
+placeholder_text = "YOUR GAME TOKEN"
+
+[node name="login" type="Button" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -47.0
+margin_top = 73.0
+margin_right = 58.0
+margin_bottom = 112.0
+theme = ExtResource( 2 )
+custom_fonts/font = SubResource( 2 )
+text = "Log in"
+
+[node name="later" type="Button" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -33.0
+margin_top = 133.0
+margin_right = 72.0
+margin_bottom = 172.0
+rect_scale = Vector2( 0.8, 0.8 )
+theme = ExtResource( 2 )
+custom_fonts/font = SubResource( 2 )
+text = "Later"
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( 3 )
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="text_changed" from="UN/LineEdit" to="." method="_on_LineEdit_text_changed"]
+[connection signal="text_changed" from="UN2/LineEdit" to="." method="_on_token_text_changed"]
+[connection signal="pressed" from="login" to="." method="_on_login_pressed"]
+[connection signal="pressed" from="later" to="." method="_on_later_pressed"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

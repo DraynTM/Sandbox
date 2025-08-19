@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Scott Cawthon - Custom Night Menu.mp3-68bf26adcd0a500dddd6b8e5dbb9cf1a.mp3str"
+
+[deps]
+
+source_file="res://audio/Music/Scott Cawthon - Custom Night Menu.mp3"
+dest_files=[ "res://.import/Scott Cawthon - Custom Night Menu.mp3-68bf26adcd0a500dddd6b8e5dbb9cf1a.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Misc.tres" type="TileSet" id=1]
+[ext_resource path="res://Editor.tres" type="TileSet" id=2]
+
+[node name="Level" type="Node2D"]
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = ExtResource( 2 )
+cell_size = Vector2( 20, 20 )
+format = 1
+tile_data = PoolIntArray( 1245188, 0, 0, 1507357, 0, 0 )
+
+[node name="TileMap2" type="TileMap" parent="."]
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 20, 20 )
+format = 1

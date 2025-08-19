@@ -1,0 +1,288 @@
+[gd_scene load_steps=22 format=2]
+
+[ext_resource path="res://scenes/Guard_Chasing.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/Animatronic.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scripts/Misc/map8.gd" type="Script" id=3]
+[ext_resource path="res://Sprites/light.png" type="Texture" id=4]
+[ext_resource path="res://Sprites/Spritesheets/FnaF 1 Spritesheet.png" type="Texture" id=5]
+[ext_resource path="res://audio/Music/The Joy Of Creation Collection Track 14 - Ambiance (TJOC SM) [Living Room].mp3" type="AudioStream" id=6]
+[ext_resource path="res://scenes/JUMPSCARE.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scenes/Maps/basement.tscn" type="PackedScene" id=8]
+[ext_resource path="res://scenes/aud_vis/AudioStreamPlayer2D.gd" type="Script" id=9]
+[ext_resource path="res://Sprites/player.png" type="Texture" id=10]
+[ext_resource path="res://shaders/vignette.tres" type="Material" id=11]
+[ext_resource path="res://scenes/console.tscn" type="PackedScene" id=12]
+[ext_resource path="res://scenes/Misc/Countdown.tscn" type="PackedScene" id=13]
+[ext_resource path="res://scenes/Lose_Screen.tscn" type="PackedScene" id=14]
+[ext_resource path="res://audio/Sounds/steps.ogg" type="AudioStream" id=15]
+
+[sub_resource type="AtlasTexture" id=14]
+atlas = ExtResource( 5 )
+region = Rect2( 819.067, 10.5617, 900.472, 1139.3 )
+
+[sub_resource type="RectangleShape2D" id=21]
+extents = Vector2( 6, 1.25 )
+
+[sub_resource type="Environment" id=8]
+background_mode = 4
+glow_intensity = 1.56
+glow_strength = 1.54
+glow_bloom = 0.04
+glow_hdr_scale = 1.77
+adjustment_enabled = true
+
+[sub_resource type="Animation" id=18]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:environment:adjustment_brightness")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 1.0 ]
+}
+
+[sub_resource type="Animation" id=19]
+resource_name = "fade"
+length = 3.813
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:environment:adjustment_brightness")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 3.8 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.01, 1.0 ]
+}
+
+[sub_resource type="RectangleShape2D" id=22]
+extents = Vector2( 388.75, 258.25 )
+
+[node name="Map9" type="Node2D"]
+script = ExtResource( 3 )
+ach = false
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+material = ExtResource( 11 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="BG" type="CanvasLayer" parent="."]
+layer = -5
+
+[node name="ColorRect" type="ColorRect" parent="BG"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 1 )
+
+[node name="JUMPSCARE" parent="." instance=ExtResource( 7 )]
+layer = 5
+
+[node name="Ambient" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 6 )
+autoplay = true
+
+[node name="map" type="Sprite" parent="."]
+visible = false
+position = Vector2( 895, 1139 )
+scale = Vector2( 2, 2 )
+texture = SubResource( 14 )
+
+[node name="Animatronic" parent="." instance=ExtResource( 2 )]
+pause_mode = 1
+position = Vector2( 177, 160 )
+z_index = 2
+speed = 85
+
+[node name="Camera2D2" type="Camera2D" parent="Animatronic"]
+position = Vector2( 458.342, 336.419 )
+smoothing_enabled = true
+smoothing_speed = 7.0
+
+[node name="Light2D3" type="Light2D" parent="Animatronic"]
+position = Vector2( 1, 2 )
+scale = Vector2( 0.0590223, 0.0516962 )
+texture = ExtResource( 4 )
+texture_scale = 1.88
+color = Color( 0.839216, 0.796078, 1, 1 )
+energy = 1.08
+range_height = -3.1
+shadow_color = Color( 0, 0, 0, 1 )
+shadow_filter = 1
+
+[node name="Light2D4" type="Light2D" parent="Animatronic"]
+position = Vector2( 1, 2 )
+scale = Vector2( 0.0590223, 0.0516962 )
+texture = ExtResource( 4 )
+texture_scale = 2.41
+color = Color( 0.839216, 0.796078, 1, 1 )
+energy = 0.54
+range_height = -3.1
+shadow_color = Color( 0, 0, 0, 1 )
+shadow_filter = 1
+
+[node name="Area2D" type="Area2D" parent="Animatronic"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Animatronic/Area2D"]
+position = Vector2( 1, 13.75 )
+shape = SubResource( 21 )
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( 8 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="WorldEnvironment"]
+autoplay = "fade"
+anims/RESET = SubResource( 18 )
+anims/fade = SubResource( 19 )
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+z_index = 6
+color = Color( 0, 0, 0, 1 )
+
+[node name="Level" parent="." instance=ExtResource( 8 )]
+modulate = Color( 0.768627, 0.87451, 1, 1 )
+
+[node name="Light2D" type="Light2D" parent="Level"]
+position = Vector2( 539.884, 1180.97 )
+scale = Vector2( 0.17563, 0.162726 )
+texture = ExtResource( 4 )
+texture_scale = 1.29
+color = Color( 1, 0.74902, 0.74902, 1 )
+energy = 1.08
+range_height = -3.1
+shadow_enabled = true
+shadow_color = Color( 0, 0, 0, 1 )
+
+[node name="Light2D3" type="Light2D" parent="Level"]
+position = Vector2( 575.884, 344.974 )
+scale = Vector2( 0.17563, 0.162726 )
+texture = ExtResource( 4 )
+texture_scale = 1.29
+color = Color( 1, 0.74902, 0.74902, 1 )
+energy = 1.08
+range_height = -3.1
+shadow_color = Color( 0, 0, 0, 1 )
+shadow_filter = 1
+
+[node name="Light2D9" type="Light2D" parent="Level"]
+position = Vector2( 655.884, 476.974 )
+scale = Vector2( 0.17563, 0.162726 )
+texture = ExtResource( 4 )
+texture_scale = 1.29
+color = Color( 1, 0.74902, 0.74902, 1 )
+energy = 1.08
+range_height = -3.1
+shadow_color = Color( 0, 0, 0, 1 )
+shadow_filter = 1
+
+[node name="Light2D6" type="Light2D" parent="Level"]
+position = Vector2( 262.884, 147.213 )
+scale = Vector2( 0.17563, 0.121485 )
+texture = ExtResource( 4 )
+texture_scale = 1.29
+color = Color( 1, 0.643137, 0.545098, 1 )
+energy = 1.08
+range_height = -3.1
+shadow_color = Color( 0, 0, 0, 1 )
+shadow_filter = 1
+
+[node name="Light2D7" type="Light2D" parent="Level"]
+position = Vector2( 635.884, 246.974 )
+scale = Vector2( 0.167303, 0.119791 )
+texture = ExtResource( 4 )
+texture_scale = 1.29
+color = Color( 1, 0.584314, 0.584314, 1 )
+energy = 1.3
+range_height = -3.1
+shadow_color = Color( 0, 0, 0, 1 )
+shadow_filter = 1
+
+[node name="Light2D8" type="Light2D" parent="Level"]
+position = Vector2( 400.634, 328.414 )
+scale = Vector2( 0.200233, 0.153767 )
+texture = ExtResource( 4 )
+texture_scale = 1.29
+color = Color( 1, 0.584314, 0.584314, 1 )
+energy = 1.3
+range_height = -3.1
+shadow_color = Color( 0, 0, 0, 1 )
+shadow_filter = 1
+
+[node name="Light2D4" type="Light2D" parent="Level"]
+position = Vector2( 253.884, 184.974 )
+scale = Vector2( 0.17563, 0.162726 )
+texture = ExtResource( 4 )
+texture_scale = 1.5
+color = Color( 0.709804, 0.443137, 0.54902, 1 )
+energy = 1.08
+range_height = -3.1
+shadow_color = Color( 0, 0, 0, 1 )
+shadow_filter = 1
+
+[node name="Light2D5" type="Light2D" parent="Level"]
+position = Vector2( 246.884, 428.735 )
+scale = Vector2( 0.181686, 0.166907 )
+texture = ExtResource( 4 )
+texture_scale = 1.29
+color = Color( 1, 0.705882, 0.560784, 1 )
+energy = 1.42
+range_height = -3.1
+shadow_color = Color( 0, 0, 0, 1 )
+shadow_filter = 1
+
+[node name="Player" type="Sprite" parent="."]
+position = Vector2( 2224, 247 )
+texture = ExtResource( 10 )
+
+[node name="Console" parent="." instance=ExtResource( 12 )]
+
+[node name="Countdown" parent="." instance=ExtResource( 13 )]
+hours = 5
+
+[node name="Lose_Screen" parent="." instance=ExtResource( 14 )]
+
+[node name="Spawnpoint" type="Position2D" parent="."]
+position = Vector2( 793, 639 )
+scale = Vector2( 2, 1 )
+z_index = 10
+
+[node name="KinematicBody2D" parent="." instance=ExtResource( 1 )]
+position = Vector2( 734, 495 )
+speed = 80
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="KinematicBody2D"]
+visible = false
+position = Vector2( -4, -4 )
+stream = ExtResource( 15 )
+autoplay = true
+max_distance = 111.0
+attenuation = 0.757858
+script = ExtResource( 9 )
+
+[node name="Line2D" type="Line2D" parent="."]
+visible = false
+
+[node name="Area2D" type="Area2D" parent="."]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2( 501, 303 )
+shape = SubResource( 22 )
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]
+[connection signal="area_exited" from="Area2D" to="." method="_on_MAP_area_exited"]

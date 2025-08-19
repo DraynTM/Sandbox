@@ -1,0 +1,496 @@
+[gd_scene load_steps=26 format=2]
+
+[ext_resource path="res://Fonts/MainFont.tres" type="DynamicFont" id=1]
+[ext_resource path="res://Sprites/Spritesheets/guardlol.png" type="Texture" id=2]
+[ext_resource path="res://Sprites/Doors.tres" type="Texture" id=3]
+[ext_resource path="res://Sprites/Tile Icons/Ground.png" type="Texture" id=4]
+[ext_resource path="res://scripts/Guard.gd" type="Script" id=5]
+[ext_resource path="res://scenes/aud_vis/AudioStreamPlayer2D.gd" type="Script" id=6]
+[ext_resource path="res://audio/Sounds/SFXBible_12478.wav" type="AudioStream" id=7]
+[ext_resource path="res://audio/Music/Buzz_Fan_Florescent2.wav" type="AudioStream" id=8]
+[ext_resource path="res://audio/Sounds/CAMERA_VIDEO_LOA_60105303.wav" type="AudioStream" id=9]
+[ext_resource path="res://audio/Sounds/Item6.wav" type="AudioStream" id=10]
+[ext_resource path="res://Sprites/вас_заметили.png" type="Texture" id=11]
+[ext_resource path="res://Sprites/mask.png" type="Texture" id=12]
+[ext_resource path="res://Sprites/scanning.png" type="Texture" id=13]
+[ext_resource path="res://Sprites/human.png" type="Texture" id=14]
+[ext_resource path="res://Fonts/bebas.tres" type="DynamicFont" id=15]
+[ext_resource path="res://Sprites/square.png" type="Texture" id=16]
+[ext_resource path="res://audio/Sounds/hero_parry.wav" type="AudioStream" id=17]
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 4 )
+region = Rect2( 13.1364, 2.69235, 2.96399, 2.44851 )
+
+[sub_resource type="Animation" id=8]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Face:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 74, 61 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Face/Face3:rect_position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 271 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Face/Face2:rect_position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 137 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Label:text")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ "SCANNING" ]
+}
+
+[sub_resource type="Animation" id=9]
+resource_name = "scan"
+length = 2.371
+tracks/0/type = "value"
+tracks/0/path = NodePath("Face:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 2.1 ),
+"transitions": PoolRealArray( 0.554785, 1 ),
+"update": 0,
+"values": [ Vector2( 61, 40 ), Vector2( 56, 324 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Face/Face3:rect_position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ Vector2( 0, 271 ), Vector2( 0, -129 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Face/Face2:rect_position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 1.3, 1.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ Vector2( 0, 137 ), Vector2( 0, -249.333 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Label:text")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.3, 0.6, 1, 1.4, 1.8, 2.1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ "SCANNING", "SCANNING.", "SCANNING..", "SCANNING...", "SCANNING..", "SCANNING.", "SCANNING" ]
+}
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 20, 30.8333 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 2.25, 20 )
+
+[sub_resource type="Animation" id=5]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Door1/StaticBody2D/CollisionShape2D:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Door2/StaticBody2D/CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Door2:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Door1:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "lock_doors"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Door1/StaticBody2D/CollisionShape2D:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Door2/StaticBody2D/CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Door1:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Door2:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ) ]
+}
+
+[sub_resource type="RectangleShape2D" id=7]
+extents = Vector2( 49, 21.625 )
+
+[node name="Guard" type="Node2D"]
+script = ExtResource( 5 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="CAM" type="Label" parent="CanvasLayer"]
+margin_left = 21.0
+margin_top = 16.0
+margin_right = 89.0
+margin_bottom = 41.0
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_fonts/font = ExtResource( 1 )
+text = "Camera:"
+
+[node name="NOISE" type="Label" parent="CanvasLayer"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 30.0
+margin_top = -43.0
+margin_right = 98.0
+margin_bottom = -18.0
+rect_pivot_offset = Vector2( 105, -34 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_fonts/font = ExtResource( 1 )
+text = "NOISE:"
+
+[node name="TextureProgress" type="TextureProgress" parent="CanvasLayer/NOISE"]
+margin_left = 64.0
+margin_top = 17.0
+margin_right = 66.0
+margin_bottom = 19.0
+rect_scale = Vector2( 60.5242, -6.46744 )
+max_value = 1000.0
+texture_progress = SubResource( 4 )
+tint_under = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AWER" type="Label" parent="CanvasLayer"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 30.0
+margin_top = -67.0
+margin_right = 149.0
+margin_bottom = -42.0
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_fonts/font = ExtResource( 1 )
+text = "AWARENESS:"
+
+[node name="TextureProgress" type="TextureProgress" parent="CanvasLayer/AWER"]
+margin_left = 119.0
+margin_top = 17.0
+margin_right = 120.0
+margin_bottom = 18.0
+rect_scale = Vector2( 85.0945, -6.30248 )
+max_value = 10000.0
+texture_progress = SubResource( 4 )
+tint_under = Color( 0, 0, 0, 1 )
+
+[node name="Scanning" type="TextureRect" parent="CanvasLayer"]
+visible = false
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -387.0
+margin_top = -256.0
+margin_right = -158.0
+margin_bottom = 282.0
+texture = ExtResource( 13 )
+expand = true
+stretch_mode = 6
+
+[node name="Face" type="TextureRect" parent="CanvasLayer/Scanning"]
+margin_left = 74.0
+margin_top = 61.0
+margin_right = 196.0
+margin_bottom = 195.001
+texture = ExtResource( 14 )
+expand = true
+stretch_mode = 6
+
+[node name="Face2" type="TextureRect" parent="CanvasLayer/Scanning/Face"]
+margin_top = 137.0
+margin_right = 122.0
+margin_bottom = 271.0
+texture = ExtResource( 14 )
+expand = true
+stretch_mode = 6
+
+[node name="Face3" type="TextureRect" parent="CanvasLayer/Scanning/Face"]
+margin_top = 271.0
+margin_right = 122.0
+margin_bottom = 405.0
+texture = ExtResource( 14 )
+expand = true
+stretch_mode = 6
+
+[node name="Label" type="Label" parent="CanvasLayer/Scanning"]
+margin_left = -108.0
+margin_top = 12.0
+margin_right = -7.0
+margin_bottom = 40.0
+custom_fonts/font = ExtResource( 15 )
+text = "SCANNING"
+align = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/Scanning"]
+autoplay = "RESET"
+anims/RESET = SubResource( 8 )
+anims/scan = SubResource( 9 )
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Scanning"]
+margin_left = 7.0
+margin_top = 189.0
+margin_right = 229.0
+margin_bottom = 323.0
+texture = ExtResource( 16 )
+expand = true
+stretch_mode = 6
+
+[node name="Timer" type="Timer" parent="CanvasLayer"]
+wait_time = 2.0
+one_shot = true
+
+[node name="Mask" type="Timer" parent="CanvasLayer"]
+wait_time = 3.0
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( -0.75, 0.95 )
+scale = Vector2( 0.27, 0.27 )
+texture = ExtResource( 2 )
+
+[node name="Area2D" type="Area2D" parent="Sprite"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite/Area2D"]
+position = Vector2( -3.97364e-08, 9.16667 )
+shape = SubResource( 3 )
+
+[node name="WARNING" type="Sprite" parent="Sprite"]
+visible = false
+position = Vector2( 2.77778, -55.3704 )
+texture = ExtResource( 11 )
+offset = Vector2( -1.968, 0 )
+
+[node name="Mask" type="Sprite" parent="Sprite"]
+visible = false
+position = Vector2( 2.77778, -40.5556 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 12 )
+offset = Vector2( -0.378, -1.219 )
+
+[node name="Door1" type="Sprite" parent="."]
+visible = false
+position = Vector2( -20, -6 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 3 )
+
+[node name="StaticBody2D" type="Area2D" parent="Door1"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Door1/StaticBody2D"]
+scale = Vector2( 2, 2 )
+shape = SubResource( 2 )
+
+[node name="Door2" type="Sprite" parent="."]
+visible = false
+position = Vector2( 21, -6 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 3 )
+
+[node name="StaticBody2D" type="Area2D" parent="Door2"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Door2/StaticBody2D"]
+scale = Vector2( 2, 2 )
+shape = SubResource( 2 )
+
+[node name="Camera_Sound" type="AudioStreamPlayer2D" parent="."]
+visible = false
+position = Vector2( 0, -5 )
+stream = ExtResource( 9 )
+max_distance = 642.0
+attenuation = 0.0853777
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Door_Sound" type="AudioStreamPlayer2D" parent="."]
+visible = false
+position = Vector2( 0, -5 )
+stream = ExtResource( 7 )
+max_distance = 143.0
+attenuation = 0.482969
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Fan" type="AudioStreamPlayer2D" parent="."]
+visible = false
+position = Vector2( 0, -5 )
+stream = ExtResource( 8 )
+volume_db = -9.377
+autoplay = true
+max_distance = 364.0
+attenuation = 1.36604
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Door_Teleport" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 10 )
+
+[node name="Destroyed" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 17 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 5 )
+anims/lock_doors = SubResource( 6 )
+
+[node name="Timer" type="Timer" parent="."]
+process_mode = 0
+wait_time = 0.5
+
+[node name="Timer2" type="Timer" parent="."]
+process_mode = 0
+wait_time = 5.0
+
+[node name="Guard_Vision" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Guard_Vision"]
+position = Vector2( -73, 1.375 )
+shape = SubResource( 7 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Guard_Vision"]
+position = Vector2( 74, 2 )
+shape = SubResource( 7 )
+
+[node name="Mask" type="Area2D" parent="."]
+position = Vector2( -1, -52 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Mask"]
+position = Vector2( 3, 42 )
+shape = SubResource( 7 )
+
+[connection signal="timeout" from="CanvasLayer/Timer" to="." method="_on_Scanning_timeout"]
+[connection signal="timeout" from="CanvasLayer/Mask" to="." method="_on_Mask_timeout"]
+[connection signal="area_entered" from="Sprite/Area2D" to="." method="_on_Area2D_area_entered"]
+[connection signal="area_entered" from="Door1/StaticBody2D" to="." method="_on_StaticBody2D_area_entered"]
+[connection signal="area_entered" from="Door2/StaticBody2D" to="." method="_on_StaticBody2D_area_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[connection signal="timeout" from="Timer2" to="." method="_on_Timer2_timeout"]
+[connection signal="area_entered" from="Guard_Vision" to="." method="_on_Guard_Vision_area_entered"]
+[connection signal="area_exited" from="Guard_Vision" to="." method="_on_Guard_Vision_area_exited"]
+[connection signal="area_entered" from="Mask" to="." method="_on_Mask_area_entered"]

@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Шаги.wav-05ed8de6d381f574476a69ddf8ef820b.sample"
+
+[deps]
+
+source_file="res://audio/Sounds/Шаги.wav"
+dest_files=[ "res://.import/Шаги.wav-05ed8de6d381f574476a69ddf8ef820b.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

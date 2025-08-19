@@ -1,0 +1,608 @@
+[gd_scene load_steps=25 format=2]
+
+[ext_resource path="res://scenes/Animatronic.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Sprites/Misc/Noise/noise2.png" type="Texture" id=2]
+[ext_resource path="res://Sprites/Misc/Noise/noise1.png" type="Texture" id=3]
+[ext_resource path="res://Sprites/Misc/Noise/noise3.png" type="Texture" id=4]
+[ext_resource path="res://audio/Sounds/GameOverStatic2.wav" type="AudioStream" id=5]
+[ext_resource path="res://audio/Sounds/BareEndoJumpscare.ogg" type="AudioStream" id=6]
+[ext_resource path="res://Fonts/NicholsonGothicRegular.otf" type="DynamicFontData" id=7]
+[ext_resource path="res://scripts/JUMPSCARE.gd" type="Script" id=8]
+[ext_resource path="res://Sprites/Icons/win_screen.png" type="Texture" id=9]
+[ext_resource path="res://scenes/Faz_Coins.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Menu.tres" type="Theme" id=11]
+[ext_resource path="res://audio/Music/Scrapbox01 - Fnaf 6 Shop Theme Remix (1).ogg" type="AudioStream" id=12]
+[ext_resource path="res://scripts/RANK.gd" type="Script" id=13]
+[ext_resource path="res://Fonts/MainFont.tres" type="DynamicFont" id=14]
+[ext_resource path="res://Sprites/Icons/ranks/12.tres" type="Texture" id=15]
+
+[sub_resource type="Animation" id=1]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Animatronic:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( -243, 442 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Animatronic:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 30, 30 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Animatronic:rotation_degrees")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("jump_sound:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("jump_sound/static:playing")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Noise:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("Fade:color")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 0 ) ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("Glitch:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/8/type = "value"
+tracks/8/path = NodePath("Noise/White:color")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+tracks/9/type = "value"
+tracks/9/path = NodePath("Timer:autostart")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/10/type = "value"
+tracks/10/path = NodePath("Animatronic:visible")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "jumpscare"
+length = 7.635
+tracks/0/type = "value"
+tracks/0/path = NodePath("Animatronic:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.9 ),
+"transitions": PoolRealArray( 0.466517, 0.277392, 1 ),
+"update": 0,
+"values": [ Vector2( -255, 652 ), Vector2( 465, 543 ), Vector2( 485, 316 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Animatronic:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.9 ),
+"transitions": PoolRealArray( 0.133972, 1 ),
+"update": 0,
+"values": [ Vector2( 30, 30 ), Vector2( 60, 60 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Animatronic:rotation_degrees")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.9 ),
+"transitions": PoolRealArray( 0.34151, 1 ),
+"update": 0,
+"values": [ 0.0, 5.6 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("jump_sound:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("jump_sound/static:playing")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 1.2 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Noise:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 1.2, 5.3 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ false, true, false ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("Fade:color")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 1.2, 5.2, 5.9, 7.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 0 ), Color( 0, 0, 0, 1 ), Color( 0, 0, 0, 1 ), Color( 0, 0, 0, 0 ) ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("Glitch:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0, 5.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/8/type = "value"
+tracks/8/path = NodePath("Noise/White:color")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 1.2, 2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/9/type = "value"
+tracks/9/path = NodePath("Timer:autostart")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/10/type = "value"
+tracks/10/path = NodePath("Animatronic:visible")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[sub_resource type="AnimatedTexture" id=3]
+flags = 4
+frames = 3
+fps = 18.3
+frame_0/texture = ExtResource( 3 )
+frame_1/texture = ExtResource( 2 )
+frame_1/delay_sec = 0.0
+frame_2/texture = ExtResource( 4 )
+frame_2/delay_sec = 0.0
+
+[sub_resource type="Shader" id=4]
+code = "/*
+	Glitch Effect Shader by Yui Kinomoto @arlez80
+
+	MIT License
+*/
+
+shader_type canvas_item;
+
+// 振動の強さ
+uniform float shake_power = 0.03;
+// 振動率
+uniform float shake_rate : hint_range( 0.0, 1.0 ) = 0.2;
+// 振動速度
+uniform float shake_speed = 5.0;
+// 振動ブロックサイズ
+uniform float shake_block_size = 30.5;
+// 色の分離率
+uniform float shake_color_rate : hint_range( 0.0, 1.0 ) = 0.01;
+
+float random( float seed )
+{
+	return fract( 543.2543 * sin( dot( vec2( seed, seed ), vec2( 3525.46, -54.3415 ) ) ) );
+}
+
+void fragment( )
+{
+	float enable_shift = float(
+		random( trunc( TIME * shake_speed ) )
+	<	shake_rate
+	);
+
+	vec2 fixed_uv = SCREEN_UV;
+	fixed_uv.x += (
+		random(
+			( trunc( SCREEN_UV.y * shake_block_size ) / shake_block_size )
+		+	TIME
+		) - 0.5
+	) * shake_power * enable_shift;
+
+	vec4 pixel_color = textureLod( SCREEN_TEXTURE, fixed_uv, 0.0 );
+	pixel_color.r = mix(
+		pixel_color.r
+	,	textureLod( SCREEN_TEXTURE, fixed_uv + vec2( shake_color_rate, 0.0 ), 0.0 ).r
+	,	enable_shift
+	);
+	pixel_color.b = mix(
+		pixel_color.b
+	,	textureLod( SCREEN_TEXTURE, fixed_uv + vec2( -shake_color_rate, 0.0 ), 0.0 ).b
+	,	enable_shift
+	);
+	COLOR = pixel_color;
+}
+"
+
+[sub_resource type="ShaderMaterial" id=5]
+shader = SubResource( 4 )
+shader_param/shake_power = 0.03
+shader_param/shake_rate = 1.0
+shader_param/shake_speed = 5.0
+shader_param/shake_block_size = 10.0
+shader_param/shake_color_rate = 0.01
+
+[sub_resource type="Shader" id=14]
+code = "shader_type canvas_item;
+
+uniform vec3 ColorTopLeft;
+uniform float TopLeftAlpha:hint_range(0,1);
+
+uniform vec3 ColorTopRight2;
+uniform float ToprightAlpha2:hint_range(0,1);
+
+uniform vec3 ColordownLeft2;
+uniform float downLeftAlpha2:hint_range(0,1);
+
+uniform vec3 ColordownRight3;
+uniform float downrightAlpha3:hint_range(0,1);
+
+
+// Gradient4Corners
+
+vec4 gradient4cornersFunc(vec2 _uv_c0rner, vec4 _top_left_c0rner, vec4 _top_right_c0rner, vec4 _bottom_left_c0rner, vec4 _bottom_right_c0rner){
+	vec4 _c0l0r_t0p_c0rner = mix(_top_left_c0rner, _top_right_c0rner, _uv_c0rner.x);
+	vec4 _c0l0r_b0tt0m_c0rner = mix(_bottom_left_c0rner, _bottom_right_c0rner, _uv_c0rner.x);
+	return mix(_c0l0r_t0p_c0rner, _c0l0r_b0tt0m_c0rner, _uv_c0rner.y);
+}
+
+
+void fragment() {
+// Input:3
+	vec3 n_out3p0 = vec3(UV, 0.0);
+
+// VectorUniform:4
+	vec3 n_out4p0 = ColorTopLeft;
+
+// ScalarUniform:5
+	float n_out5p0 = TopLeftAlpha;
+
+// VectorUniform:7
+	vec3 n_out7p0 = ColorTopRight2;
+
+// ScalarUniform:6
+	float n_out6p0 = ToprightAlpha2;
+
+// VectorUniform:10
+	vec3 n_out10p0 = ColordownLeft2;
+
+// ScalarUniform:11
+	float n_out11p0 = downLeftAlpha2;
+
+// VectorUniform:8
+	vec3 n_out8p0 = ColordownRight3;
+
+// ScalarUniform:9
+	float n_out9p0 = downrightAlpha3;
+
+// Gradient4Corners:2
+	vec3 n_out2p0;
+	float n_out2p1;
+	{
+		vec4 n_out2p0n_out2p1 = gradient4cornersFunc(n_out3p0.xy, vec4(n_out4p0, n_out5p0), vec4(n_out7p0, n_out6p0), vec4(n_out10p0, n_out11p0), vec4(n_out8p0, n_out9p0));
+		n_out2p0 = n_out2p0n_out2p1.rgb;
+		n_out2p1 = n_out2p0n_out2p1.a;
+	}
+
+// Output:0
+	COLOR.rgb = n_out2p0;
+	COLOR.a = n_out2p1;
+
+}
+
+
+"
+
+[sub_resource type="ShaderMaterial" id=15]
+shader = SubResource( 14 )
+shader_param/ColorTopLeft = Vector3( 0, 0, 0 )
+shader_param/TopLeftAlpha = 1.0
+shader_param/ColorTopRight2 = null
+shader_param/ToprightAlpha2 = 0.0
+shader_param/ColordownLeft2 = null
+shader_param/downLeftAlpha2 = 1.0
+shader_param/ColordownRight3 = null
+shader_param/downrightAlpha3 = 0.0
+
+[sub_resource type="DynamicFont" id=6]
+size = 91
+outline_color = Color( 0, 0, 0, 1 )
+use_filter = true
+font_data = ExtResource( 7 )
+
+[sub_resource type="DynamicFont" id=16]
+size = 24
+use_filter = true
+font_data = ExtResource( 7 )
+
+[node name="JUMPSCARE" type="CanvasLayer"]
+script = ExtResource( 8 )
+
+[node name="jump" type="AnimationPlayer" parent="."]
+autoplay = "RESET"
+anims/RESET = SubResource( 1 )
+anims/jumpscare = SubResource( 2 )
+
+[node name="Animatronic" parent="." instance=ExtResource( 1 )]
+visible = false
+position = Vector2( -243, 442 )
+scale = Vector2( 30, 30 )
+can_move = false
+
+[node name="Noise" type="TextureRect" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = SubResource( 3 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="White" type="ColorRect" parent="Noise"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Glitch" type="ColorRect" parent="."]
+visible = false
+material = SubResource( 5 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Fade" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+color = Color( 0, 0, 0, 0 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.4
+one_shot = true
+
+[node name="jump_sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 6 )
+
+[node name="static" type="AudioStreamPlayer" parent="jump_sound"]
+stream = ExtResource( 5 )
+
+[node name="win" type="AudioStreamPlayer" parent="jump_sound"]
+stream = ExtResource( 12 )
+
+[node name="Win_Screen" type="Control" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="BG" type="TextureRect" parent="Win_Screen"]
+modulate = Color( 0.945098, 0.933333, 0.996078, 1 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+texture = ExtResource( 9 )
+expand = true
+stretch_mode = 7
+
+[node name="ColorRect" type="ColorRect" parent="Win_Screen"]
+material = SubResource( 15 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="YW" type="Label" parent="Win_Screen"]
+margin_left = 18.0
+margin_top = 89.0
+margin_right = 432.0
+margin_bottom = 190.0
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 6 )
+text = "YOU WIN!"
+
+[node name="into_menu" type="Button" parent="Win_Screen"]
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_left = 25.0
+margin_top = -13.0
+margin_right = 284.0
+margin_bottom = 30.0
+theme = ExtResource( 11 )
+custom_fonts/font = SubResource( 16 )
+text = "INTO MAIN MENU"
+
+[node name="back" type="Button" parent="Win_Screen"]
+visible = false
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_left = 26.0
+margin_top = 41.0
+margin_right = 285.0
+margin_bottom = 84.0
+theme = ExtResource( 11 )
+custom_fonts/font = SubResource( 16 )
+text = "BACK TO THE EDITOR"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Faz_Coins" parent="Win_Screen" instance=ExtResource( 10 )]
+position = Vector2( 80, 226 )
+coins = 1294.0
+gold_coins = 258.0
+
+[node name="RANK" type="TextureRect" parent="Win_Screen"]
+margin_left = 287.0
+margin_top = 185.0
+margin_right = 422.0
+margin_bottom = 331.0
+texture = ExtResource( 15 )
+expand = true
+stretch_mode = 6
+script = ExtResource( 13 )
+
+[node name="EXP" type="Label" parent="Win_Screen"]
+margin_left = 397.0
+margin_top = 303.0
+margin_right = 672.0
+margin_bottom = 324.0
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_fonts/font = ExtResource( 14 )
+text = "EXP"
+
+[node name="RANK_TEXT" type="Label" parent="Win_Screen"]
+margin_left = 398.0
+margin_top = 278.0
+margin_right = 673.0
+margin_bottom = 299.0
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_fonts/font = ExtResource( 14 )
+text = "RANK"
+
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[connection signal="pressed" from="Win_Screen/into_menu" to="." method="_on_into_menu_pressed"]
+[connection signal="pressed" from="Win_Screen/back" to="." method="_on_back_pressed"]

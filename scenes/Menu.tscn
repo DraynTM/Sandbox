@@ -1,0 +1,1017 @@
+[gd_scene load_steps=39 format=2]
+
+[ext_resource path="res://Fonts/MainFont.tres" type="DynamicFont" id=1]
+[ext_resource path="res://Scripts/Menu.gd" type="Script" id=2]
+[ext_resource path="res://Fonts/NicholsonGothicRegular.otf" type="DynamicFontData" id=3]
+[ext_resource path="res://scenes/Level_Selecter.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/aud_vis/SongScript.gd" type="Script" id=5]
+[ext_resource path="res://scenes/aud_vis/visualizer.gd" type="Script" id=6]
+[ext_resource path="res://Sprites/sparkle.png" type="Texture" id=7]
+[ext_resource path="res://Menu.tres" type="Theme" id=8]
+[ext_resource path="res://scenes/Options.tscn" type="PackedScene" id=9]
+[ext_resource path="res://scenes/Faz_Coins.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Sprites/Backgrounds/bg7.jpg" type="Texture" id=11]
+[ext_resource path="res://scripts/BG.gd" type="Script" id=12]
+[ext_resource path="res://Sprites/Backgrounds/bg4.jpg" type="Texture" id=13]
+[ext_resource path="res://Sprites/Backgrounds/bg5.jpg" type="Texture" id=14]
+[ext_resource path="res://Sprites/Backgrounds/bg2.jpg" type="Texture" id=15]
+[ext_resource path="res://Sprites/Backgrounds/bg1.jpg" type="Texture" id=16]
+[ext_resource path="res://Sprites/Backgrounds/bg3.jpg" type="Texture" id=17]
+[ext_resource path="res://Sprites/Backgrounds/bg6.PNG" type="Texture" id=18]
+[ext_resource path="res://scenes/Backgrounds.tscn" type="PackedScene" id=19]
+[ext_resource path="res://scenes/Tracks.tscn" type="PackedScene" id=20]
+[ext_resource path="res://scripts/Backgrounds.gd" type="Script" id=21]
+[ext_resource path="res://scripts/music_changing.gd" type="Script" id=22]
+[ext_resource path="res://scripts/RANK.gd" type="Script" id=23]
+[ext_resource path="res://Sprites/Icons/ranks/12.tres" type="Texture" id=24]
+[ext_resource path="res://scenes/Misc/ModManager.tscn" type="PackedScene" id=25]
+
+[sub_resource type="Animation" id=12]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("../Camera2D:zoom")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("../Camera2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 500, 301 ) ]
+}
+
+[sub_resource type="Animation" id=11]
+resource_name = "bg"
+length = 12.374
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("../Camera2D:zoom")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 6.3 ),
+"transitions": PoolRealArray( 0.378929, 1.62451 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 0.8, 0.8 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("../Camera2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 3.2 ),
+"transitions": PoolRealArray( 0.435275, 1.7411 ),
+"update": 0,
+"values": [ Vector2( 500, 301 ), Vector2( 477, 322 ) ]
+}
+
+[sub_resource type="Animation" id=13]
+resource_name = "bg alt"
+length = 13.38
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("../Camera2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 5 ),
+"transitions": PoolRealArray( 0.659754, 1.93187 ),
+"update": 0,
+"values": [ Vector2( 500, 301 ), Vector2( 411.784, 301 ) ]
+}
+
+[sub_resource type="Shader" id=16]
+code = "shader_type canvas_item;
+
+uniform vec3 ColorTopLeft;
+uniform float TopLeftAlpha:hint_range(0,1);
+
+uniform vec3 ColorTopRight2;
+uniform float ToprightAlpha2:hint_range(0,1);
+
+uniform vec3 ColordownLeft2;
+uniform float downLeftAlpha2:hint_range(0,1);
+
+uniform vec3 ColordownRight3;
+uniform float downrightAlpha3:hint_range(0,1);
+
+
+// Gradient4Corners
+
+vec4 gradient4cornersFunc(vec2 _uv_c0rner, vec4 _top_left_c0rner, vec4 _top_right_c0rner, vec4 _bottom_left_c0rner, vec4 _bottom_right_c0rner){
+	vec4 _c0l0r_t0p_c0rner = mix(_top_left_c0rner, _top_right_c0rner, _uv_c0rner.x);
+	vec4 _c0l0r_b0tt0m_c0rner = mix(_bottom_left_c0rner, _bottom_right_c0rner, _uv_c0rner.x);
+	return mix(_c0l0r_t0p_c0rner, _c0l0r_b0tt0m_c0rner, _uv_c0rner.y);
+}
+
+
+void fragment() {
+// Input:3
+	vec3 n_out3p0 = vec3(UV, 0.0);
+
+// VectorUniform:4
+	vec3 n_out4p0 = ColorTopLeft;
+
+// ScalarUniform:5
+	float n_out5p0 = TopLeftAlpha;
+
+// VectorUniform:7
+	vec3 n_out7p0 = ColorTopRight2;
+
+// ScalarUniform:6
+	float n_out6p0 = ToprightAlpha2;
+
+// VectorUniform:10
+	vec3 n_out10p0 = ColordownLeft2;
+
+// ScalarUniform:11
+	float n_out11p0 = downLeftAlpha2;
+
+// VectorUniform:8
+	vec3 n_out8p0 = ColordownRight3;
+
+// ScalarUniform:9
+	float n_out9p0 = downrightAlpha3;
+
+// Gradient4Corners:2
+	vec3 n_out2p0;
+	float n_out2p1;
+	{
+		vec4 n_out2p0n_out2p1 = gradient4cornersFunc(n_out3p0.xy, vec4(n_out4p0, n_out5p0), vec4(n_out7p0, n_out6p0), vec4(n_out10p0, n_out11p0), vec4(n_out8p0, n_out9p0));
+		n_out2p0 = n_out2p0n_out2p1.rgb;
+		n_out2p1 = n_out2p0n_out2p1.a;
+	}
+
+// Output:0
+	COLOR.rgb = n_out2p0;
+	COLOR.a = n_out2p1;
+
+}
+
+
+"
+
+[sub_resource type="ShaderMaterial" id=10]
+shader = SubResource( 16 )
+shader_param/ColorTopLeft = Vector3( 0, 0, 0 )
+shader_param/TopLeftAlpha = 1.0
+shader_param/ColorTopRight2 = null
+shader_param/ToprightAlpha2 = 0.0
+shader_param/ColordownLeft2 = null
+shader_param/downLeftAlpha2 = 1.0
+shader_param/ColordownRight3 = null
+shader_param/downrightAlpha3 = 0.0
+
+[sub_resource type="Animation" id=4]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("CanvasLayer/ColorRect2:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("UI/AudioStreamPlayer:volume_db")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "fade"
+length = 1.052
+tracks/0/type = "value"
+tracks/0/path = NodePath("CanvasLayer/ColorRect2:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 0 ), Color( 0, 0, 0, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("UI/AudioStreamPlayer:volume_db")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, -36.211 ]
+}
+
+[sub_resource type="Animation" id=15]
+resource_name = "fade2"
+length = 1.129
+tracks/0/type = "value"
+tracks/0/path = NodePath("CanvasLayer/ColorRect2:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 1 ), Color( 0, 0, 0, 0 ) ]
+}
+
+[sub_resource type="Curve" id=2]
+_data = [ Vector2( 0.119128, 0.757669 ), 0.0, 0.0, 0, 0, Vector2( 0.65604, 0.58589 ), -0.192444, -0.192444, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="DynamicFont" id=6]
+size = 54
+use_filter = true
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=1]
+size = 75
+outline_color = Color( 0, 0, 0, 1 )
+use_filter = true
+font_data = ExtResource( 3 )
+
+[sub_resource type="StyleBoxFlat" id=17]
+bg_color = Color( 1, 1, 1, 1 )
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_color = Color( 0, 0, 0, 0.34902 )
+shadow_size = 15
+
+[sub_resource type="Theme" id=18]
+WindowDialog/colors/title_color = Color( 0, 0, 0, 1 )
+WindowDialog/constants/close_h_ofs = 18
+WindowDialog/constants/close_v_ofs = -4
+WindowDialog/constants/scaleborder_size = 4
+WindowDialog/constants/title_height = -40
+WindowDialog/fonts/title_font = ExtResource( 1 )
+WindowDialog/icons/close = null
+WindowDialog/icons/close_highlight = null
+WindowDialog/styles/panel = SubResource( 17 )
+
+[node name="Menu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 2 )
+
+[node name="CoolestBG" type="TextureRect" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -500.0
+margin_top = -300.0
+margin_right = 500.0
+margin_bottom = 300.0
+texture = ExtResource( 14 )
+expand = true
+stretch_mode = 1
+script = ExtResource( 12 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CoolestBG"]
+autoplay = "bg alt"
+anims/RESET = SubResource( 12 )
+anims/bg = SubResource( 11 )
+"anims/bg alt" = SubResource( 13 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource( 10 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -504.0
+margin_top = -300.0
+margin_right = 496.0
+margin_bottom = 300.0
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 500, 301 )
+current = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "fade2"
+anims/RESET = SubResource( 4 )
+anims/fade = SubResource( 5 )
+anims/fade2 = SubResource( 15 )
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+visible = false
+position = Vector2( 506, 700 )
+amount = 43
+lifetime = 3.96
+explosiveness = 0.2
+randomness = 0.07
+lifetime_randomness = 0.07
+texture = ExtResource( 7 )
+emission_shape = 2
+emission_rect_extents = Vector2( 800, 1 )
+spread = 13.88
+gravity = Vector2( 0, -98 )
+scale_amount = 0.5
+scale_amount_random = 0.03
+scale_amount_curve = SubResource( 2 )
+color = Color( 1, 1, 1, 0.635294 )
+anim_speed = 4.74
+anim_speed_random = 0.1
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.215
+one_shot = true
+
+[node name="Timer_Quit" type="Timer" parent="Timer"]
+wait_time = 1.055
+one_shot = true
+
+[node name="Random_Title" type="Timer" parent="Timer"]
+wait_time = 5.0
+autostart = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect2" type="ColorRect" parent="CanvasLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+color = Color( 0, 0, 0, 0 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="UI" type="CanvasLayer" parent="."]
+layer = 0
+script = ExtResource( 21 )
+
+[node name="Options" parent="UI" instance=ExtResource( 9 )]
+visible = false
+margin_left = -499.0
+margin_top = -294.0
+margin_right = -499.0
+margin_bottom = -294.0
+
+[node name="Button" type="Button" parent="UI/Options"]
+visible = false
+margin_left = 453.0
+margin_top = 413.0
+margin_right = 545.0
+margin_bottom = 443.0
+custom_fonts/font = ExtResource( 1 )
+text = "APPLY"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="UI"]
+autoplay = true
+script = ExtResource( 5 )
+
+[node name="Node2D" type="Node2D" parent="UI/AudioStreamPlayer"]
+position = Vector2( 841, 349 )
+script = ExtResource( 6 )
+shape = "Circular"
+radius = 76
+visualizer_color = Color( 1, 1, 1, 1 )
+definition = 60
+
+[node name="Faz_Coins" parent="UI" instance=ExtResource( 10 )]
+position = Vector2( 268, 553 )
+coins = 1431.0
+gold_coins = 286.0
+
+[node name="SEE_YA" type="Label" parent="UI"]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -110.0
+margin_top = 19.0
+margin_right = 91.0
+margin_bottom = 80.0
+custom_fonts/font = SubResource( 6 )
+text = "SEE YA!"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LOGO" type="Label" parent="UI"]
+margin_left = 37.0
+margin_top = 137.0
+margin_right = 606.0
+margin_bottom = 220.0
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 1 )
+text = "FNAF SANDBOX"
+align = 1
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="UI"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -246.0
+margin_top = -60.0
+margin_right = -11.0
+margin_bottom = -8.0
+alignment = 1
+
+[node name="version" type="Label" parent="UI/VBoxContainer2"]
+margin_top = 3.0
+margin_right = 235.0
+margin_bottom = 24.0
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_fonts/font = ExtResource( 1 )
+text = "Denis \"Drayn\" Goronsky 2022"
+align = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="version2" type="Label" parent="UI/VBoxContainer2"]
+margin_top = 28.0
+margin_right = 235.0
+margin_bottom = 49.0
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_fonts/font = ExtResource( 1 )
+text = "v.0.5.1"
+align = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI"]
+margin_left = 19.0
+margin_top = 301.0
+margin_right = 276.0
+margin_bottom = 547.0
+
+[node name="Team2" type="Button" parent="UI/VBoxContainer"]
+margin_right = 257.0
+margin_bottom = 21.0
+theme = ExtResource( 8 )
+custom_fonts/font = ExtResource( 1 )
+text = "PLAY"
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AE" type="Button" parent="UI/VBoxContainer"]
+margin_top = 25.0
+margin_right = 257.0
+margin_bottom = 46.0
+theme = ExtResource( 8 )
+custom_fonts/font = ExtResource( 1 )
+text = "ANIMATRONIC EDITOR"
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Publishing_Searching" type="Button" parent="UI/VBoxContainer"]
+margin_top = 50.0
+margin_right = 257.0
+margin_bottom = 71.0
+theme = ExtResource( 8 )
+custom_fonts/font = ExtResource( 1 )
+text = "PUBLISHING OR SEARCHING MAPS"
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tracks" type="Button" parent="UI/VBoxContainer"]
+margin_top = 75.0
+margin_right = 257.0
+margin_bottom = 96.0
+theme = ExtResource( 8 )
+custom_fonts/font = ExtResource( 1 )
+text = "TRACKS"
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="OptionButton" type="OptionButton" parent="UI/VBoxContainer"]
+visible = false
+margin_top = 84.0
+margin_right = 191.0
+margin_bottom = 108.0
+theme = ExtResource( 8 )
+custom_fonts/font = ExtResource( 1 )
+text = "BACKGROUND 1 "
+icon = ExtResource( 11 )
+flat = true
+align = 1
+expand_icon = true
+items = [ "BACKGROUND 1 ", ExtResource( 11 ), false, 1, null, "BACKGROUND 2 ", ExtResource( 16 ), true, 2, null, "BACKGROUND 3 ", ExtResource( 15 ), true, 3, null, "BACKGROUND 4  ", ExtResource( 17 ), true, 4, null, "BACKGROUND 5  ", ExtResource( 13 ), true, 5, null, "BACKGROUND 6 ", ExtResource( 14 ), true, 6, null, "BACKGROUND 7  ", ExtResource( 18 ), true, 7, null ]
+selected = 0
+
+[node name="Bg" type="Button" parent="UI/VBoxContainer"]
+margin_top = 100.0
+margin_right = 257.0
+margin_bottom = 121.0
+theme = ExtResource( 8 )
+custom_fonts/font = ExtResource( 1 )
+text = "BACKGROUNDS"
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SD" type="Button" parent="UI/VBoxContainer"]
+margin_top = 125.0
+margin_right = 257.0
+margin_bottom = 146.0
+theme = ExtResource( 8 )
+custom_fonts/font = ExtResource( 1 )
+text = "SUPPORT DEVELOPMENT"
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Credits" type="Button" parent="UI/VBoxContainer"]
+margin_top = 150.0
+margin_right = 257.0
+margin_bottom = 171.0
+theme = ExtResource( 8 )
+custom_fonts/font = ExtResource( 1 )
+text = "PROFILE"
+flat = true
+
+[node name="Credits2" type="Button" parent="UI/VBoxContainer"]
+margin_top = 175.0
+margin_right = 257.0
+margin_bottom = 196.0
+theme = ExtResource( 8 )
+custom_fonts/font = ExtResource( 1 )
+text = "NEWS"
+flat = true
+
+[node name="SD2" type="Button" parent="UI/VBoxContainer"]
+margin_top = 200.0
+margin_right = 257.0
+margin_bottom = 221.0
+theme = ExtResource( 8 )
+custom_fonts/font = ExtResource( 1 )
+text = "CODES"
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Quit" type="Button" parent="UI/VBoxContainer"]
+margin_top = 225.0
+margin_right = 257.0
+margin_bottom = 246.0
+theme = ExtResource( 8 )
+custom_fonts/font = ExtResource( 1 )
+text = "QUIT"
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BGS" parent="UI" instance=ExtResource( 19 )]
+visible = false
+
+[node name="Tracks" parent="UI" instance=ExtResource( 20 )]
+visible = false
+
+[node name="Apply" type="Button" parent="UI/Tracks"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -29.0
+margin_top = -60.0
+margin_right = 36.0
+margin_bottom = -30.0
+theme = ExtResource( 8 )
+custom_fonts/font = ExtResource( 1 )
+text = "APPLY"
+
+[node name="Node2D" type="Node2D" parent="UI"]
+script = ExtResource( 22 )
+
+[node name="Level_Selecter" parent="UI" instance=ExtResource( 4 )]
+visible = false
+
+[node name="RANK2" type="TextureRect" parent="UI"]
+margin_left = 3.0
+margin_top = 487.0
+margin_right = 93.0
+margin_bottom = 572.0
+texture = ExtResource( 24 )
+expand = true
+stretch_mode = 6
+script = ExtResource( 23 )
+
+[node name="STATS" type="WindowDialog" parent="UI"]
+margin_left = 251.0
+margin_top = 231.0
+margin_right = 740.0
+margin_bottom = 442.0
+theme = SubResource( 18 )
+window_title = "PROFILE"
+
+[node name="GK" type="Label" parent="UI/STATS"]
+modulate = Color( 0, 0, 0, 1 )
+margin_left = 103.0
+margin_top = 104.0
+margin_right = 196.0
+margin_bottom = 125.0
+custom_fonts/font = ExtResource( 1 )
+text = "Guards Killed"
+
+[node name="YP" type="Label" parent="UI/STATS"]
+visible = false
+modulate = Color( 0, 0, 0, 1 )
+margin_left = 13.0
+margin_top = 144.0
+margin_right = 106.0
+margin_bottom = 165.0
+custom_fonts/font = ExtResource( 1 )
+text = "You played"
+
+[node name="ST" type="Label" parent="UI/STATS"]
+visible = false
+modulate = Color( 0, 0, 0, 1 )
+margin_left = 96.0
+margin_top = 104.0
+margin_right = 389.0
+margin_bottom = 125.0
+custom_fonts/font = ExtResource( 1 )
+text = "STATS"
+align = 1
+
+[node name="NICK" type="Label" parent="UI/STATS"]
+modulate = Color( 0, 0, 0, 1 )
+margin_left = 103.0
+margin_top = 30.0
+margin_right = 466.0
+margin_bottom = 51.0
+custom_fonts/font = ExtResource( 1 )
+text = "NICKNAME"
+
+[node name="EXP" type="Label" parent="UI/STATS"]
+modulate = Color( 0, 0, 0, 1 )
+margin_left = 103.0
+margin_top = 66.0
+margin_right = 466.0
+margin_bottom = 87.0
+custom_fonts/font = ExtResource( 1 )
+text = "EXP"
+
+[node name="EXP2" type="Label" parent="UI/STATS"]
+modulate = Color( 0, 0, 0, 1 )
+margin_left = 103.0
+margin_top = 47.0
+margin_right = 192.0
+margin_bottom = 68.0
+custom_fonts/font = ExtResource( 1 )
+text = "RANK"
+
+[node name="GJ" type="Label" parent="UI/STATS"]
+modulate = Color( 0, 0, 0, 1 )
+margin_left = 103.0
+margin_top = 85.0
+margin_right = 466.0
+margin_bottom = 106.0
+custom_fonts/font = ExtResource( 1 )
+text = "GAMEJOLT: CONNECTED"
+
+[node name="RANK" type="TextureRect" parent="UI/STATS"]
+margin_left = 9.0
+margin_top = 22.0
+margin_right = 99.0
+margin_bottom = 107.0
+texture = ExtResource( 24 )
+expand = true
+stretch_mode = 6
+script = ExtResource( 23 )
+
+[node name="Button" type="Button" parent="UI/STATS"]
+margin_left = 297.0
+margin_top = 178.0
+margin_right = 484.0
+margin_bottom = 205.0
+theme = ExtResource( 8 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_fonts/font = ExtResource( 1 )
+text = "RECONNECT ACCOUNT"
+
+[node name="Button2" type="Button" parent="UI/STATS"]
+visible = false
+margin_left = 297.0
+margin_top = 147.0
+margin_right = 484.0
+margin_bottom = 174.0
+theme = ExtResource( 8 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_fonts/font = ExtResource( 1 )
+text = "CHANGE PFP"
+
+[node name="NEWS" type="WindowDialog" parent="UI"]
+visible = true
+margin_left = 251.0
+margin_top = 169.0
+margin_right = 740.0
+margin_bottom = 553.0
+theme = SubResource( 18 )
+window_title = "NEWS"
+
+[node name="GK" type="Label" parent="UI/NEWS"]
+visible = false
+modulate = Color( 0, 0, 0, 1 )
+margin_left = 103.0
+margin_top = 104.0
+margin_right = 196.0
+margin_bottom = 125.0
+custom_fonts/font = ExtResource( 1 )
+text = "Guards Killed"
+
+[node name="YP" type="Label" parent="UI/NEWS"]
+visible = false
+modulate = Color( 0, 0, 0, 1 )
+margin_left = 13.0
+margin_top = 144.0
+margin_right = 106.0
+margin_bottom = 165.0
+custom_fonts/font = ExtResource( 1 )
+text = "You played"
+
+[node name="ST" type="Label" parent="UI/NEWS"]
+visible = false
+modulate = Color( 0, 0, 0, 1 )
+margin_left = 96.0
+margin_top = 104.0
+margin_right = 389.0
+margin_bottom = 125.0
+custom_fonts/font = ExtResource( 1 )
+text = "STATS"
+align = 1
+
+[node name="EXP" type="Label" parent="UI/NEWS"]
+visible = false
+modulate = Color( 0, 0, 0, 1 )
+margin_left = 103.0
+margin_top = 66.0
+margin_right = 466.0
+margin_bottom = 87.0
+custom_fonts/font = ExtResource( 1 )
+text = "EXP"
+
+[node name="EXP2" type="Label" parent="UI/NEWS"]
+visible = false
+modulate = Color( 0, 0, 0, 1 )
+margin_left = 103.0
+margin_top = 47.0
+margin_right = 192.0
+margin_bottom = 68.0
+custom_fonts/font = ExtResource( 1 )
+text = "RANK"
+
+[node name="GJ" type="Label" parent="UI/NEWS"]
+visible = false
+modulate = Color( 0, 0, 0, 1 )
+margin_left = 103.0
+margin_top = 85.0
+margin_right = 466.0
+margin_bottom = 106.0
+custom_fonts/font = ExtResource( 1 )
+text = "GAMEJOLT: CONNECTED"
+
+[node name="Button" type="Button" parent="UI/NEWS"]
+visible = false
+margin_left = 297.0
+margin_top = 178.0
+margin_right = 484.0
+margin_bottom = 205.0
+theme = ExtResource( 8 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_fonts/font = ExtResource( 1 )
+text = "RECONNECT ACCOUNT"
+
+[node name="Button2" type="Button" parent="UI/NEWS"]
+visible = false
+margin_left = 297.0
+margin_top = 147.0
+margin_right = 484.0
+margin_bottom = 174.0
+theme = ExtResource( 8 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_fonts/font = ExtResource( 1 )
+text = "CHANGE PFP"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="UI/NEWS"]
+anchor_right = 0.109
+margin_top = 28.0
+margin_right = 429.699
+margin_bottom = 384.0
+
+[node name="NICK" type="Label" parent="UI/NEWS/ScrollContainer"]
+modulate = Color( 0, 0, 0, 1 )
+margin_right = 481.0
+margin_bottom = 2253.0
+custom_fonts/font = ExtResource( 1 )
+text = "7/4/2022
+0.5.1 UPDATE! - BETA
+what's new?
+- Fixed a bug with tutorial
+- Fixed a bug with color palette in the \"Animatronic Editor\"
+- Fixed a bug with the z index with NPCs and Player/Guard
+- Now the triggers will be hidden in the \"TEST\" mode
+- Now all the change logs will be displayed in the \"NEWS\" section
+- Fixed a bug with the extra ability
+- Fixed a bug with teleportation in the map 
+\"FREDDY FAZBEARS PIZZA 2\"
+- Erase character button moved in the bottom
+- Fixed other minor bugs
+
+2/4/2022
+0.5 UPDATE! - BETA
+what's new?
+- Added more than 30 tiles and decorations
+- Added a new NPCs
+- Added a new achievments
+- Added 4 new Extra Abilities
+- Improved visual effects in - ANIMATRONIC EDITOR 
+and CODES
+- Added a news button in main menu
+- Now you can load your own music and listen to it in 
+the menu and map editor
+-Added more sounds
+- Added a new hotkeys: F4 - Fullscreen, Ctrl + S - Quick save map
+End - Toggle editor, Ctrl + L - Lightning, + and - Zooming camera
+- Fixed a bug with the guard's mask
+
+23/3/2022
+0.4 UPDATE! - BETA
+what's new?
+- Added more than 50 tiles and decorations
+- Added a brush settings
+- Added rank system
+- Added GameJolt API support
+- Added Achievments
+- Added a new game modes \"Chasing\" and \"Mask\"
+- Added 2 official maps
+- Added \"PROFILE\"
+- Added a new tracks
+- Fixed other minor bugs
+
+8/3/2022
+0.3 UPDATE! - BETA
+what's new?
+-added animatronics editor
+-added official maps
+-added more than 60 new tiles and decorations
+-added ability mechanics for animatronics
+-added 13 new splashes
+-added purchase of new backgrounds
+-added purchase of tracks for the menu and editor
+-added 2 new currencies: Faz Coins and Gold Faz Coins
+-added a tutorial for the editor
+-now tiles are selected with the right mouse button, instead of the left
+-added settings
+-added titles
+-added the logo of the developers at the beginning of the game
+-changed the interface style in the editor
+-added a sub-menu for the editor
+-added camera mode
+-added a development support button
+-added 2 new background tracks in map test mode
+-added npcs (npc's) to the map editor
+-added a guard
+-added a jumpscare to a custom animatronics
+-added a victory screen
+-added map settings
+-added a timer for the map test mode 
+(it can be disabled in the settings)
+-added the ability to change the player's 
+spawn for custom maps
+-changed all animations of the idle and 
+walking animatronics
+-changed the hitbox for removing decorations
+ to the center of the sprite
+-added triggers
+-added security guard settings
+-added setting of triggers
+-added 6 official maps
+-fixed other minor bugs
+
+10/2/2022
+0.2 UPDATE! - BETA
+what's new?
+- Added more than 80 tiles and decorations
+- Added a Main Menu
+- Now the selected tile will be displayed in the cursor
+
+2/2/2022
+The first beta of the game has been released"
+align = 1
+percent_visible = -0.00147493
+
+[node name="FileDialog" type="FileDialog" parent="UI"]
+margin_left = 240.0
+margin_top = 99.0
+margin_right = 801.0
+margin_bottom = 513.0
+rect_min_size = Vector2( 150, 52.5 )
+window_title = "Open a File"
+mode = 0
+access = 2
+filters = PoolStringArray( "*.png", "*.jpg", "*.jpeg" )
+show_hidden_files = true
+current_dir = "/"
+current_path = "/"
+
+[node name="NIKNAME" type="Label" parent="UI"]
+margin_left = 78.0
+margin_top = 549.0
+margin_right = 222.0
+margin_bottom = 570.0
+custom_fonts/font = ExtResource( 1 )
+text = "NICK"
+
+[node name="ModManager" parent="UI" instance=ExtResource( 25 )]
+visible = false
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="ColorRect2" type="ColorRect" parent="CanvasLayer2"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 1.0
+margin_right = 1.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[connection signal="timeout" from="Timer/Timer_Quit" to="." method="_on_Timer_Quit_timeout"]
+[connection signal="timeout" from="Timer/Random_Title" to="." method="_on_Random_Title_timeout"]
+[connection signal="finished" from="UI/AudioStreamPlayer" to="UI/Node2D" method="_on_AudioStreamPlayer_finished"]
+[connection signal="pressed" from="UI/VBoxContainer/Team2" to="." method="_on_Team2_pressed"]
+[connection signal="pressed" from="UI/VBoxContainer/AE" to="." method="_on_Team_pressed"]
+[connection signal="pressed" from="UI/VBoxContainer/Publishing_Searching" to="." method="_on_Publishing_Searching_pressed"]
+[connection signal="pressed" from="UI/VBoxContainer/Tracks" to="." method="_on_Tracks_pressed"]
+[connection signal="pressed" from="UI/VBoxContainer/Bg" to="." method="_on_Bg_pressed"]
+[connection signal="pressed" from="UI/VBoxContainer/SD" to="." method="_on_SD_pressed"]
+[connection signal="pressed" from="UI/VBoxContainer/Credits" to="." method="_on_STATS_pressed"]
+[connection signal="pressed" from="UI/VBoxContainer/Credits2" to="." method="_on_NEWS_pressed"]
+[connection signal="pressed" from="UI/VBoxContainer/SD2" to="." method="_on_CODES_pressed"]
+[connection signal="pressed" from="UI/VBoxContainer/Quit" to="." method="_on_Quit_pressed"]
+[connection signal="file_selected" from="UI/Tracks/test/FileDialog" to="UI/Node2D" method="_on_FileDialog_file_selected"]
+[connection signal="pressed" from="UI/Tracks/Apply" to="UI/Node2D" method="_on_Apply_pressed"]
+[connection signal="pressed" from="UI/STATS/Button" to="." method="_on_Connect_GJ_pressed"]
+[connection signal="pressed" from="UI/STATS/Button2" to="." method="_on_Button2_pressed"]
+[connection signal="pressed" from="UI/NEWS/Button" to="." method="_on_Connect_GJ_pressed"]
+[connection signal="pressed" from="UI/NEWS/Button2" to="." method="_on_Button2_pressed"]
+[connection signal="confirmed" from="UI/FileDialog" to="." method="_on_Load_Photo_confirmed"]
+[connection signal="dir_selected" from="UI/FileDialog" to="." method="_on_FileDialog_dir_selected"]
+[connection signal="file_selected" from="UI/FileDialog" to="." method="_on_FileDialog_file_selected"]
+
+[editable path="UI/Tracks"]
+[editable path="UI/Tracks/test"]

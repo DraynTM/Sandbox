@@ -1,0 +1,331 @@
+[gd_scene load_steps=18 format=2]
+
+[ext_resource path="res://scenes/Animatronic.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Fonts/pixel.tres" type="DynamicFont" id=2]
+[ext_resource path="res://scripts/TutorialL.gd" type="Script" id=3]
+[ext_resource path="res://audio/Music/Toby Fox - THE HOLY.mp3" type="AudioStream" id=4]
+[ext_resource path="res://scenes/Guard.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/JUMPSCARE.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Menu.tres" type="Theme" id=7]
+
+[sub_resource type="Animation" id=2]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Music:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 28, 611 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Tut/awar:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Tut/awar:rect_position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 129, 226 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "popup"
+length = 6.972
+tracks/0/type = "value"
+tracks/0/path = NodePath("Music:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.9, 1.5, 6.1, 6.9 ),
+"transitions": PoolRealArray( 0.233258, 0.138696, 2.21914, 1 ),
+"update": 0,
+"values": [ Vector2( 28, 611 ), Vector2( 25, 400 ), Vector2( 25, 400 ), Vector2( 25, 612 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Tut/awar:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.9, 1.5, 6.1, 6.9 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Tut/awar:rect_position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 129, 226 ) ]
+}
+
+[sub_resource type="Animation" id=11]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 3, 306 ) ]
+}
+
+[sub_resource type="Animation" id=7]
+resource_name = "past_abil"
+length = 11.647
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 2, 4.8 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ "GREAT", "Now it's time to hunt.", "Hunter, KILL THIS GUARD!" ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("awar:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = false
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1, 11, 11.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "past_wasd"
+length = 7.108
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 2.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ "EXCELLENT!", "NOW, USE Z FOR THE YOUR ABILITY." ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("awar:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = false
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1.1, 6.2, 7.1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "tut"
+length = 12.199
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 3.1, 6.1, 10 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ "GREETINGS, YOUNG HUNTER.", "TODAY YOU WILL BECOME A GREAT CREATOR.", "BUT FIRST, WE'LL TEACH YOU A COUPLE OF THINGS.", "HUNTER, USE WASD TO MOVE." ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:rect_position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 10, 11.2 ),
+"transitions": PoolRealArray( 1, 0.287175, 1 ),
+"update": 0,
+"values": [ Vector2( 3, 306 ), Vector2( 3, 306 ), Vector2( 4, 454 ) ]
+}
+
+[sub_resource type="RectangleShape2D" id=8]
+extents = Vector2( 4, 1 )
+
+[sub_resource type="Environment" id=1]
+background_mode = 4
+glow_enabled = true
+glow_intensity = 1.13
+glow_strength = 1.11
+glow_bloom = 0.17
+glow_blend_mode = 0
+adjustment_enabled = true
+adjustment_brightness = 8.0
+adjustment_saturation = 0.01
+
+[sub_resource type="RectangleShape2D" id=9]
+extents = Vector2( 30, 27 )
+
+[sub_resource type="RectangleShape2D" id=10]
+extents = Vector2( 109.5, 10 )
+
+[node name="Tutorial" type="Node2D"]
+script = ExtResource( 3 )
+
+[node name="BG" type="CanvasLayer" parent="."]
+layer = -51
+
+[node name="ColorRect" type="ColorRect" parent="BG"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 1 )
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="Music" type="Label" parent="UI"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 28.0
+margin_top = 11.0
+margin_right = 556.0
+margin_bottom = 45.0
+custom_fonts/font = ExtResource( 2 )
+text = "NOW PLAYING - TOBY FOX | THE HOLY"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="UI/Music"]
+root_node = NodePath("../..")
+autoplay = "popup"
+anims/RESET = SubResource( 2 )
+anims/popup = SubResource( 3 )
+
+[node name="Tut" type="Label" parent="UI"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -497.0
+margin_top = 6.0
+margin_right = 498.0
+margin_bottom = 40.0
+custom_fonts/font = ExtResource( 2 )
+text = "GREETINGS, YOUNG HUNTER."
+align = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="UI/Tut"]
+autoplay = "tut"
+anims/RESET = SubResource( 11 )
+anims/past_abil = SubResource( 7 )
+anims/past_wasd = SubResource( 5 )
+anims/tut = SubResource( 6 )
+
+[node name="awar" type="Label" parent="UI/Tut"]
+modulate = Color( 1, 1, 1, 0 )
+margin_left = 129.0
+margin_top = 226.0
+margin_right = 1633.0
+margin_bottom = 260.0
+rect_scale = Vector2( 0.5, 0.5 )
+custom_fonts/font = ExtResource( 2 )
+text = "- if this scale is filled by more than 10%, then the guard will close the door in front of you"
+
+[node name="noiz" type="Label" parent="UI/Tut/awar"]
+margin_left = -92.0
+margin_top = 46.0
+margin_right = 1412.0
+margin_bottom = 80.0
+rect_scale = Vector2( 0.98652, 1.02505 )
+custom_fonts/font = ExtResource( 2 )
+text = "- the more noise, the more awareness"
+
+[node name="Button" type="Button" parent="UI"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -265.0
+margin_top = 35.0
+margin_right = -30.0
+margin_bottom = 79.0
+theme = ExtResource( 7 )
+custom_fonts/font = ExtResource( 2 )
+text = "SKIP TUTORIAL"
+
+[node name="Animatronic" parent="." instance=ExtResource( 1 )]
+position = Vector2( 523, 318 )
+
+[node name="Area2D" type="Area2D" parent="Animatronic"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Animatronic/Area2D"]
+position = Vector2( 1, 13 )
+shape = SubResource( 8 )
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( 1 )
+
+[node name="MUSEK" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+autoplay = true
+
+[node name="Guard" parent="." instance=ExtResource( 5 )]
+position = Vector2( 519, 544 )
+scale = Vector2( 2, 2 )
+
+[node name="w" type="Area2D" parent="Guard"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Guard/w"]
+position = Vector2( 2, 5 )
+shape = SubResource( 9 )
+
+[node name="Spawnpoint" type="Position2D" parent="."]
+position = Vector2( 524, 322 )
+
+[node name="JUMPSCARE" parent="." instance=ExtResource( 6 )]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2( 407, 348 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2( 115, 146 )
+shape = SubResource( 10 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2( 115, 238 )
+shape = SubResource( 10 )
+
+[connection signal="pressed" from="UI/Button" to="." method="_on_Button_pressed"]
+[connection signal="area_entered" from="Guard/w" to="." method="_on_Area2D_area_entered"]

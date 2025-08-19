@@ -1,0 +1,471 @@
+[gd_scene load_steps=39 format=2]
+
+[ext_resource path="res://scenes/Maps/fnafsl.tscn" type="PackedScene" id=1]
+[ext_resource path="res://audio/Music/Turtle CrusherC.wav" type="AudioStream" id=2]
+[ext_resource path="res://Sprites/Spritesheets/all_fnaf1-FFPS.png" type="Texture" id=3]
+[ext_resource path="res://scripts/Misc/babe.gd" type="Script" id=4]
+[ext_resource path="res://Sprites/Spritesheets/Custom Edited - Five Nights at Freddys Customs - Sister Location Map Characters Undertale Overworld-Style (1)-Recovered.png" type="Texture" id=5]
+[ext_resource path="res://audio/Sounds/scream op3-2.wav" type="AudioStream" id=6]
+[ext_resource path="res://scripts/Misc/williams_backstory.gd" type="Script" id=7]
+[ext_resource path="res://scenes/Guard_Playable.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Fonts/pixel.tres" type="DynamicFont" id=9]
+[ext_resource path="res://shaders/vignette.tres" type="Material" id=11]
+[ext_resource path="res://scenes/console.tscn" type="PackedScene" id=12]
+
+[sub_resource type="Shader" id=29]
+code = "//---CRT Shader---
+shader_type canvas_item;
+
+uniform float scanline_count : hint_range(0, 1800) = 50.0;
+
+vec2 uv_curve(vec2 uv)
+{
+	uv = (uv - 0.5) * 2.0;
+	
+	//You can modify the numbers and try different values
+	uv.x *= 1.0 + pow(abs(uv.y) / 3.0, 2.0);
+	uv.y *= 1.0 + pow(abs(uv.x) / 3.0, 2.0);
+	
+	//The scale part (you can delete it when you want)
+	uv /= 1.2;
+	
+	uv = (uv/2.0) + 0.5;
+	return uv;
+}
+
+
+void fragment()
+{	
+	float PI = 3.14159;
+	
+	//You can modify the *3.0, *-3.0 for a bigger or smaller 
+	float r = texture(SCREEN_TEXTURE, uv_curve(SCREEN_UV) + vec2(SCREEN_PIXEL_SIZE.x*0.0), 0.0).r;
+	float g = texture(SCREEN_TEXTURE, uv_curve(SCREEN_UV) + vec2(SCREEN_PIXEL_SIZE.x*3.0), 0.0).g;
+	float b = texture(SCREEN_TEXTURE, uv_curve(SCREEN_UV) + vec2(SCREEN_PIXEL_SIZE.x*-3.0), 0.0).b;
+	
+	
+	//If you dont want scanlines you can just delete this part
+	float s = sin(uv_curve(SCREEN_UV).y * scanline_count * PI * 2.0);
+	s = (s * 0.5 + 0.5) * 0.9 + 0.1;
+	vec4 scan_line = vec4(vec3(pow(s, 0.25)), 1.0);
+	
+	
+	COLOR = vec4(r, g, b, 1.0) * scan_line;
+}
+"
+
+[sub_resource type="ShaderMaterial" id=30]
+shader = SubResource( 29 )
+shader_param/scanline_count = 931.633
+
+[sub_resource type="Environment" id=8]
+background_mode = 4
+glow_intensity = 1.56
+glow_strength = 1.54
+glow_bloom = 0.04
+glow_hdr_scale = 1.77
+adjustment_enabled = true
+
+[sub_resource type="Animation" id=18]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:environment:adjustment_brightness")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 1.0 ]
+}
+
+[sub_resource type="Animation" id=19]
+resource_name = "fade"
+length = 3.813
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:environment:adjustment_brightness")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 3.8 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.01, 1.0 ]
+}
+
+[sub_resource type="Animation" id=43]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("WILLIAM:can_move")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("WILLIAM:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( -1448, 600 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("CanvasLayer/Label:percent_visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("CanvasLayer/Label:text")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ "OH GOD DAMN!!" ]
+}
+
+[sub_resource type="Animation" id=20]
+resource_name = "cutscene1"
+length = 7.352
+tracks/0/type = "value"
+tracks/0/path = NodePath("WILLIAM:can_move")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("WILLIAM:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( -1448, 600 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("CanvasLayer/Label:percent_visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.5, 2, 2.1, 3.2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 1.0, 1.0, 0.0, 1.0 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("CanvasLayer/Label:text")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 2.1, 6.3 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ "OH GOD!!", "Daughter, I asked you not to get involved with these animatronics.", "OH GOD DAMN!!" ]
+}
+
+[sub_resource type="AtlasTexture" id=31]
+atlas = ExtResource( 5 )
+region = Rect2( 1519, 365, 298, 308 )
+
+[sub_resource type="AtlasTexture" id=21]
+atlas = ExtResource( 3 )
+region = Rect2( 2, 763, 47, 75 )
+
+[sub_resource type="Animation" id=22]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ SubResource( 21 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+
+[sub_resource type="AtlasTexture" id=33]
+atlas = ExtResource( 3 )
+region = Rect2( 50, 1935, 47, 75 )
+
+[sub_resource type="AtlasTexture" id=34]
+atlas = ExtResource( 3 )
+region = Rect2( 98, 1935, 47, 75 )
+
+[sub_resource type="AtlasTexture" id=35]
+atlas = ExtResource( 3 )
+region = Rect2( 2, 2021, 47, 77 )
+
+[sub_resource type="AtlasTexture" id=36]
+atlas = ExtResource( 3 )
+region = Rect2( 50, 2021, 47, 77 )
+
+[sub_resource type="AtlasTexture" id=37]
+atlas = ExtResource( 3 )
+region = Rect2( 146, 2021, 47, 77 )
+
+[sub_resource type="AtlasTexture" id=38]
+atlas = ExtResource( 3 )
+region = Rect2( 2, 2109, 47, 80 )
+
+[sub_resource type="AtlasTexture" id=39]
+atlas = ExtResource( 3 )
+region = Rect2( 98, 2109, 47, 80 )
+
+[sub_resource type="AtlasTexture" id=40]
+atlas = ExtResource( 3 )
+region = Rect2( 146, 2109, 47, 80 )
+
+[sub_resource type="Animation" id=23]
+resource_name = "catch"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ SubResource( 33 ), SubResource( 34 ), SubResource( 35 ), SubResource( 36 ), SubResource( 37 ), SubResource( 38 ), SubResource( 39 ), SubResource( 40 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.8 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+
+[sub_resource type="Animation" id=24]
+resource_name = "idle"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ SubResource( 21 ) ]
+}
+
+[sub_resource type="AtlasTexture" id=25]
+atlas = ExtResource( 3 )
+region = Rect2( 50, 936, 47, 75 )
+
+[sub_resource type="AtlasTexture" id=26]
+atlas = ExtResource( 3 )
+region = Rect2( 146, 936, 47, 75 )
+
+[sub_resource type="Animation" id=27]
+resource_name = "walk"
+length = 1.607
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4, 0.8, 1.2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ SubResource( 25 ), SubResource( 21 ), SubResource( 26 ), SubResource( 21 ) ]
+}
+
+[sub_resource type="RectangleShape2D" id=28]
+extents = Vector2( 10, 23.5 )
+
+[sub_resource type="RectangleShape2D" id=42]
+extents = Vector2( 16.6666, 10 )
+
+[sub_resource type="AtlasTexture" id=32]
+atlas = ExtResource( 5 )
+region = Rect2( 1120, 918, 12, 26 )
+
+[sub_resource type="RectangleShape2D" id=41]
+
+[node name="WB" type="Node2D"]
+script = ExtResource( 7 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+material = ExtResource( 11 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="vhs" type="ColorRect" parent="CanvasLayer"]
+material = SubResource( 30 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+margin_top = 470.0
+margin_right = 1000.0
+margin_bottom = 600.0
+custom_fonts/font = ExtResource( 9 )
+text = "OH GOD DAMN!!"
+align = 1
+autowrap = true
+percent_visible = 0.0
+
+[node name="BG" type="CanvasLayer" parent="."]
+layer = -5
+
+[node name="ColorRect" type="ColorRect" parent="BG"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 1 )
+
+[node name="Console" parent="." instance=ExtResource( 12 )]
+
+[node name="Ambient" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 2 )
+autoplay = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( 8 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="WorldEnvironment"]
+autoplay = "fade"
+anims/RESET = SubResource( 18 )
+anims/fade = SubResource( 19 )
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+z_index = 6
+
+[node name="Level" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1151, 0 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 43 )
+anims/cutscene1 = SubResource( 20 )
+
+[node name="location" type="Sprite" parent="."]
+position = Vector2( -1448, 549 )
+texture = SubResource( 31 )
+
+[node name="babe" type="KinematicBody2D" parent="."]
+position = Vector2( -1448, 481 )
+scale = Vector2( 0.3, 0.3 )
+script = ExtResource( 4 )
+
+[node name="Sprite" type="Sprite" parent="babe"]
+texture = SubResource( 21 )
+
+[node name="walking" type="AnimationPlayer" parent="babe"]
+anims/RESET = SubResource( 22 )
+anims/catch = SubResource( 23 )
+anims/idle = SubResource( 24 )
+anims/walk = SubResource( 27 )
+
+[node name="Camera2D" type="Camera2D" parent="babe"]
+current = true
+zoom = Vector2( 0.3, 0.3 )
+smoothing_enabled = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="babe"]
+position = Vector2( 0, 11 )
+shape = SubResource( 28 )
+
+[node name="Area2D" type="Area2D" parent="babe"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="babe/Area2D"]
+shape = SubResource( 42 )
+
+[node name="elizabeth" type="Sprite" parent="."]
+position = Vector2( -1448, 677 )
+scale = Vector2( 0.4, 0.4 )
+texture = SubResource( 32 )
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2( -1450, 672 )
+shape = SubResource( 41 )
+
+[node name="Scream" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 6 )
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 4.0
+one_shot = true
+
+[node name="WILLIAM" parent="." instance=ExtResource( 8 )]
+position = Vector2( -1448, 600 )
+can_move = false
+speed = 50
+
+[node name="Camera2D" type="Camera2D" parent="WILLIAM"]
+smoothing_enabled = true
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_Catch_area_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_Scream_timeout"]

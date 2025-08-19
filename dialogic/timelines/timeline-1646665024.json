@@ -1,0 +1,132 @@
+{
+	"events": [
+		{
+			"character": "character-1646588279.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Hi again!"
+		},
+		{
+			"character": "character-1646588279.json",
+			"event_id": "dialogic_010",
+			"options": [
+
+			],
+			"portrait": "",
+			"question": "Question?"
+		},
+		{
+			"choice": "Nothing.",
+			"condition": "",
+			"definition": "",
+			"event_id": "dialogic_011",
+			"value": ""
+		},
+		{
+			"character": "character-1646588279.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Ok."
+		},
+		{
+			"event_id": "dialogic_022",
+			"transition_duration": 1
+		},
+		{
+			"choice": "What is this thing?",
+			"condition": "",
+			"definition": "",
+			"event_id": "dialogic_011",
+			"value": ""
+		},
+		{
+			"character": "character-1646588279.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "This is a camera shaking trigger"
+		},
+		{
+			"character": "character-1646588279.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Yes."
+		},
+		{
+			"event_id": "dialogic_022",
+			"transition_duration": 1
+		},
+		{
+			"choice": "I know...",
+			"condition": "",
+			"definition": "",
+			"event_id": "dialogic_011",
+			"value": ""
+		},
+		{
+			"character": "character-1646588279.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "W-what?"
+		},
+		{
+			"character": "character-1646665509.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Ho-ho-ho.\nwe all know that!"
+		},
+		{
+			"character": "character-1646588279.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "??????????????????????!?!!!!?!!!!??!!!"
+		},
+		{
+			"character": "character-1646665509.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Don't pretend you don't remember sleeping with that white fox!"
+		},
+		{
+			"character": "character-1646588279.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "You mean \"Drayn\"?"
+		},
+		{
+			"character": "character-1646665509.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "FUCK YEAH!"
+		},
+		{
+			"character": "character-1646588279.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "what the..."
+		},
+		{
+			"character": "character-1646586225.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "I condemn!"
+		},
+		{
+			"character": "character-1646588279.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Please don't remind me of that."
+		},
+		{
+			"event_id": "dialogic_022",
+			"transition_duration": 1
+		},
+		{
+			"event_id": "dialogic_013"
+		}
+	],
+	"metadata": {
+		"dialogic-version": "1.4.1",
+		"file": "timeline-1646665024.json",
+		"name": "Genos_Shaking"
+	}
+}

@@ -1,0 +1,178 @@
+{
+	"events": [
+		{
+			"character": "character-1646588279.json",
+			"event_id": "dialogic_001",
+			"portrait": "(Don't change)",
+			"text": "..."
+		},
+		{
+			"character": "character-1646588279.json",
+			"event_id": "dialogic_001",
+			"portrait": "(Don't change)",
+			"text": "why are you looking at me?"
+		},
+		{
+			"character": "character-1646588279.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "..."
+		},
+		{
+			"character": "character-1646588279.json",
+			"event_id": "dialogic_010",
+			"options": [
+
+			],
+			"portrait": "",
+			"question": "Do you need a help?"
+		},
+		{
+			"choice": "Who are you?",
+			"condition": "",
+			"definition": "",
+			"event_id": "dialogic_011",
+			"value": ""
+		},
+		{
+			"character": "character-1646588279.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "um... I'm... I am..."
+		},
+		{
+			"character": "character-1646588279.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "I'm Genos, A glowing bunny.  "
+		},
+		{
+			"character": "character-1646588279.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "I am consisting of light."
+		},
+		{
+			"character": "character-1646588279.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "I'm like a lightsaber, y'know? XD"
+		},
+		{
+			"choice": "Where am I?",
+			"condition": "",
+			"definition": "",
+			"event_id": "dialogic_011",
+			"value": ""
+		},
+		{
+			"character": "character-1646588279.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "you are in a pocket dimension created by Drain."
+		},
+		{
+			"character": "character-1646588279.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Dayn...?"
+		},
+		{
+			"character": "character-1646588279.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Dryan...??"
+		},
+		{
+			"character": "character-1646588279.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Drwayn..???"
+		},
+		{
+			"character": "character-1646588279.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "No matter."
+		},
+		{
+			"choice": "2+2=?",
+			"condition": "",
+			"definition": "",
+			"event_id": "dialogic_011",
+			"value": ""
+		},
+		{
+			"character": "character-1646588279.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "..."
+		},
+		{
+			"character": "character-1646588279.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Are you serious?"
+		},
+		{
+			"character": "character-1646588279.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "..."
+		},
+		{
+			"character": "character-1646588279.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Okay..."
+		},
+		{
+			"character": "character-1646588279.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "..."
+		},
+		{
+			"character": "character-1646588279.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "um..."
+		},
+		{
+			"character": "character-1646588279.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "5???!"
+		},
+		{
+			"character": "character-1646588279.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "idk, i'm not learning math at school"
+		},
+		{
+			"event_id": "dialogic_013"
+		},
+		{
+			"event_id": "dialogic_023",
+			"hide_dialogbox": true,
+			"wait_seconds": 1,
+			"waiting_skippable": false
+		},
+		{
+			"character": "character-1646588279.json",
+			"event_id": "dialogic_001",
+			"portrait": "(Don't change)",
+			"text": "Please, leave me alone ~"
+		},
+		{
+			"event_id": "dialogic_022",
+			"transition_duration": 0.5
+		}
+	],
+	"metadata": {
+		"dialogic-version": "1.4.1",
+		"file": "timeline-1646589966.json",
+		"name": "Genos"
+	}
+}

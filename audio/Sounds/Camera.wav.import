@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Camera.wav-7f6ad24078f2621448234baddcdeb16c.sample"
+
+[deps]
+
+source_file="res://audio/Sounds/Camera.wav"
+dest_files=[ "res://.import/Camera.wav-7f6ad24078f2621448234baddcdeb16c.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

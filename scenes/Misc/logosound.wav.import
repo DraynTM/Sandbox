@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/logosound.wav-093cb1d8b1f2e9cc3c6b4bf76d2ec4ea.sample"
+
+[deps]
+
+source_file="res://scenes/Misc/logosound.wav"
+dest_files=[ "res://.import/logosound.wav-093cb1d8b1f2e9cc3c6b4bf76d2ec4ea.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

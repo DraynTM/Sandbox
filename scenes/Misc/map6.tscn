@@ -1,0 +1,268 @@
+[gd_scene load_steps=22 format=2]
+
+[ext_resource path="res://scenes/Guard.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/Animatronic.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/Maps/aFFPS.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Sprites/light.png" type="Texture" id=4]
+[ext_resource path="res://scripts/Misc/map6.gd" type="Script" id=5]
+[ext_resource path="res://audio/Music/amb_people.mp3" type="AudioStream" id=6]
+[ext_resource path="res://scenes/JUMPSCARE.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scenes/Misc/Triggers.tscn" type="PackedScene" id=8]
+[ext_resource path="res://audio/Sounds/Item6.wav" type="AudioStream" id=9]
+[ext_resource path="res://Sprites/player.png" type="Texture" id=10]
+[ext_resource path="res://shaders/vignette.tres" type="Material" id=11]
+[ext_resource path="res://scenes/console.tscn" type="PackedScene" id=12]
+[ext_resource path="res://scenes/Misc/working.tscn" type="PackedScene" id=13]
+[ext_resource path="res://scenes/Lose_Screen.tscn" type="PackedScene" id=14]
+
+[sub_resource type="Animation" id=20]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1407, 1406 ) ]
+}
+
+[sub_resource type="Animation" id=21]
+resource_name = "flash_anim"
+length = 13.301
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 3.1, 4.3, 5.4, 6.8, 9.1, 10.6 ),
+"transitions": PoolRealArray( 1, 0.267943, 1, 0.353554, 0.210224, 0.287175, 1 ),
+"update": 0,
+"values": [ Vector2( 1407, 1406 ), Vector2( 1407, 1406 ), Vector2( 1295, 1405 ), Vector2( 1295, 1405 ), Vector2( 1500, 1410 ), Vector2( 1500, 1410 ), Vector2( 1407, 1409 ) ]
+}
+
+[sub_resource type="RectangleShape2D" id=22]
+
+[sub_resource type="RectangleShape2D" id=17]
+extents = Vector2( 6, 1.25 )
+
+[sub_resource type="Environment" id=8]
+background_mode = 4
+glow_intensity = 1.56
+glow_strength = 1.54
+glow_bloom = 0.04
+glow_hdr_scale = 1.77
+adjustment_enabled = true
+
+[sub_resource type="Animation" id=18]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:environment:adjustment_brightness")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 1.0 ]
+}
+
+[sub_resource type="Animation" id=19]
+resource_name = "fade"
+length = 3.813
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:environment:adjustment_brightness")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 3.8 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.01, 1.0 ]
+}
+
+[node name="Map6" type="Node2D"]
+position = Vector2( 329, 56 )
+script = ExtResource( 5 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+material = ExtResource( 11 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="BG" type="CanvasLayer" parent="."]
+layer = -5
+
+[node name="ColorRect" type="ColorRect" parent="BG"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 1 )
+
+[node name="JUMPSCARE" parent="." instance=ExtResource( 7 )]
+layer = 5
+
+[node name="Workin" parent="." instance=ExtResource( 13 )]
+
+[node name="Triggers" parent="." instance=ExtResource( 8 )]
+
+[node name="Ambient" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 6 )
+autoplay = true
+
+[node name="Flashlight" type="Light2D" parent="."]
+position = Vector2( 1407, 1406 )
+scale = Vector2( 0.331408, 0.311758 )
+texture = ExtResource( 4 )
+texture_scale = 0.72
+energy = 1.14
+range_height = -3.1
+shadow_color = Color( 0, 0, 0, 1 )
+shadow_filter = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Flashlight"]
+autoplay = "flash_anim"
+anims/RESET = SubResource( 20 )
+anims/flash_anim = SubResource( 21 )
+
+[node name="Light2D2" type="Light2D" parent="."]
+position = Vector2( 1421, 1514 )
+scale = Vector2( 1.46257, 0.553317 )
+texture = ExtResource( 4 )
+texture_scale = 0.43
+color = Color( 1, 0.4, 0.4, 1 )
+energy = 0.53
+range_height = -3.1
+shadow_color = Color( 0, 0, 0, 1 )
+shadow_filter = 1
+
+[node name="Light2D3" type="Light2D" parent="."]
+position = Vector2( 984, 1326 )
+scale = Vector2( 0.806232, 1.46897 )
+texture = ExtResource( 4 )
+texture_scale = 0.43
+color = Color( 1, 0.4, 0.4, 1 )
+energy = 0.53
+range_height = -3.1
+shadow_color = Color( 0, 0, 0, 1 )
+shadow_filter = 1
+
+[node name="Guard" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1408, 1406 )
+scale = Vector2( 2, 2 )
+z_index = 1
+guard_type = 2
+
+[node name="Area2D" type="Area2D" parent="Guard"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Guard/Area2D"]
+shape = SubResource( 22 )
+
+[node name="Animatronic" parent="." instance=ExtResource( 2 )]
+pause_mode = 1
+position = Vector2( 1262, 1522 )
+z_index = 2
+speed = 65
+
+[node name="Camera2D2" type="Camera2D" parent="Animatronic"]
+position = Vector2( 458.342, 336.419 )
+smoothing_enabled = true
+smoothing_speed = 7.0
+
+[node name="Light2D3" type="Light2D" parent="Animatronic"]
+visible = false
+position = Vector2( 1, 2 )
+scale = Vector2( 0.0590223, 0.0516962 )
+texture = ExtResource( 4 )
+texture_scale = 1.88
+color = Color( 0.839216, 0.796078, 1, 1 )
+energy = 1.08
+range_height = -3.1
+shadow_color = Color( 0, 0, 0, 1 )
+shadow_filter = 1
+
+[node name="Light2D4" type="Light2D" parent="Animatronic"]
+position = Vector2( 1, 2 )
+scale = Vector2( 0.0590223, 0.0516962 )
+texture = ExtResource( 4 )
+texture_scale = 2.41
+color = Color( 0.839216, 0.796078, 1, 1 )
+energy = 1.19
+range_height = -3.1
+shadow_color = Color( 0, 0, 0, 1 )
+shadow_filter = 1
+
+[node name="Area2D" type="Area2D" parent="Animatronic"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Animatronic/Area2D"]
+position = Vector2( 1, 13.75 )
+shape = SubResource( 17 )
+
+[node name="Level" parent="." instance=ExtResource( 3 )]
+position = Vector2( 795, 1291 )
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( 8 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="WorldEnvironment"]
+autoplay = "fade"
+anims/RESET = SubResource( 18 )
+anims/fade = SubResource( 19 )
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color( 0.14902, 0.0862745, 0.290196, 1 )
+
+[node name="Player" type="Sprite" parent="."]
+position = Vector2( 2224, 247 )
+texture = ExtResource( 10 )
+
+[node name="Spawnpoint" type="Position2D" parent="."]
+position = Vector2( 1253, 1547 )
+scale = Vector2( 2, 1 )
+z_index = 10
+
+[node name="Position2D" type="Position2D" parent="."]
+position = Vector2( 1124, 1280 )
+
+[node name="Position2D2" type="Position2D" parent="."]
+position = Vector2( 1265, 1279 )
+
+[node name="Position2D3" type="Position2D" parent="."]
+position = Vector2( 1544, 1281 )
+
+[node name="Position2D4" type="Position2D" parent="."]
+position = Vector2( 1687, 1279 )
+
+[node name="Position2D5" type="Position2D" parent="."]
+position = Vector2( 1404, 1141 )
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 7.0
+autostart = true
+
+[node name="teleport" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 9 )
+
+[node name="Console" parent="." instance=ExtResource( 12 )]
+
+[node name="Lose_Screen" parent="." instance=ExtResource( 14 )]
+
+[connection signal="area_entered" from="Guard/Area2D" to="." method="_on_Area2D_area_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

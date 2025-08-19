@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Five Night at Freddy's Security Breach OST - Vanta Black (Remastered).mp3-6decb0b11d25250caefc686b174e294f.mp3str"
+
+[deps]
+
+source_file="res://audio/Music/Five Night at Freddy's Security Breach OST - Vanta Black (Remastered).mp3"
+dest_files=[ "res://.import/Five Night at Freddy's Security Breach OST - Vanta Black (Remastered).mp3-6decb0b11d25250caefc686b174e294f.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/scream op3-2.wav-d76da96542f05fad5c58a1c9c582b059.sample"
+
+[deps]
+
+source_file="res://audio/Sounds/scream op3-2.wav"
+dest_files=[ "res://.import/scream op3-2.wav-d76da96542f05fad5c58a1c9c582b059.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

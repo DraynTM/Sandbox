@@ -1,0 +1,67 @@
+{
+	"events": [
+		{
+			"character": "character-1646662204.json",
+			"event_id": "dialogic_010",
+			"options": [
+
+			],
+			"portrait": "",
+			"question": "Howdy!"
+		},
+		{
+			"choice": "What is this thing?",
+			"condition": "",
+			"definition": "",
+			"event_id": "dialogic_011",
+			"value": ""
+		},
+		{
+			"character": "character-1646662204.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Oh, I'm so glad you're asking this question.\nThis is a [color=#0000ff] Teleports [/color]\nThe orange teleporter teleports you down the ordinate. (Y)\nThe blue teleporter teleports you right the abscissaю (X)\nCool, right?"
+		},
+		{
+			"event_id": "dialogic_022",
+			"transition_duration": 1
+		},
+		{
+			"choice": "Who are you?",
+			"condition": "",
+			"definition": "",
+			"event_id": "dialogic_011",
+			"value": ""
+		},
+		{
+			"character": "character-1646662204.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "So-o-o."
+		},
+		{
+			"character": "character-1646662204.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "I'm Drayn"
+		},
+		{
+			"character": "character-1646662204.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "That's the only thing I know.\nThe explosion that happened just a few days ago damaged my memory.\nYeah, unlike all the others, I am the only one here who is NOT an ANIMATRONIC.\nSo, so far, I can't answer this question completely.\nlet's you ask me about it later."
+		},
+		{
+			"event_id": "dialogic_022",
+			"transition_duration": 1
+		},
+		{
+			"event_id": "dialogic_013"
+		}
+	],
+	"metadata": {
+		"dialogic-version": "1.4.1",
+		"file": "timeline-1646662188.json",
+		"name": "Drayn_Teleports"
+	}
+}

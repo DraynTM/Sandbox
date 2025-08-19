@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/TJOC RSM - main menu theme.mp3-3c85857e7625b8654da7ec07ae087c8b.mp3str"
+
+[deps]
+
+source_file="res://audio/Music/TJOC RSM - main menu theme.mp3"
+dest_files=[ "res://.import/TJOC RSM - main menu theme.mp3-3c85857e7625b8654da7ec07ae087c8b.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0
